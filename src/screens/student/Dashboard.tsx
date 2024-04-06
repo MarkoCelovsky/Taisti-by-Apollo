@@ -34,7 +34,7 @@ import { RootStackNavigatorParamList } from "schema/navigationTypes";
 import { notificationsCol, stocksCol } from "utils/firebase.config";
 import { CustomButton, CustomText } from "components/UI/CustomElements";
 import { Image } from "expo-image";
-import { SavedStock, Stock, UserPreference } from "schema/types";
+import { SavedStock, Stock, UserInterest } from "schema/types";
 import Slider from "@react-native-community/slider";
 import {
     entertainmentStocks,
@@ -96,7 +96,7 @@ export const Dashboard = (): ReactElement => {
     );
 
     useEffect(() => {
-        const q = query(stocksCol(userId || ""));
+        const q = query(stocksCol(userId || "test"));
         const unsubscribe = onSnapshot(q, (querySnapshot) => {
             try {
                 setMyStocks(querySnapshot.docs.map((doc) => ({ ...doc.data(), docId: doc.id })));
@@ -109,20 +109,20 @@ export const Dashboard = (): ReactElement => {
 
     useEffect(() => {
         const getStocks = () => {
-            switch (user?.userPreference) {
-                case UserPreference.Entertainment:
+            switch (user?.selectedInterest) {
+                case UserInterest.Learn:
                     setStocks(mapStocks(entertainmentStocks));
                     break;
-                case UserPreference.Gastronomy:
+                case UserInterest.TrackPortfolio:
                     setStocks(mapStocks(gastronomyStocks));
                     break;
-                case UserPreference.Healthcare:
+                case UserInterest.Explore:
                     setStocks(mapStocks(healthcareStocks));
                     break;
-                case UserPreference.Sports:
+                case UserInterest.Community:
                     setStocks(mapStocks(sportsStocks));
                     break;
-                case UserPreference.Technology:
+                case UserInterest.Play:
                     setStocks(mapStocks(technologyStocks));
                     break;
 
@@ -132,7 +132,7 @@ export const Dashboard = (): ReactElement => {
             }
         };
         getStocks();
-    }, [user?.userPreference]);
+    }, [user?.selectedInterest]);
 
     const buyStock = async (amount: number, stock: Stock) => {
         try {

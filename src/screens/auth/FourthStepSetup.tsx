@@ -5,14 +5,7 @@ import { FlatList, StyleSheet, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
-
-export enum UserTolerance {
-    VeryCautios = "Very Cautious",
-    Cautious = "Cautious",
-    Neutral = "Neutral",
-    Aggressive = "Aggressive",
-    VeryAggressive = "Very Aggressive",
-}
+import { UserTolerance } from "schema/types";
 
 const questions = [
     {
@@ -28,25 +21,18 @@ const questions = [
 
 export const FourthStepSetup = ({ route }: { route: any }): ReactElement => {
     const [selected, setSelected] = useState<UserTolerance>();
-    const { editUser } = useAuth();
     const navigation = useNavigation<any>();
     const { selectedInterest, selectedExperience, selectedBudget } = route.params;
 
-    const next = () => {
+    const next = async () => {
         if (selected !== undefined) {
-            console.log("Preferences:", selectedInterest, selectedExperience, selectedBudget, selected);
-            const updateUser = editUser({
-                riskTolerance: selected,
+            
+            navigation.navigate("FifthStepSetup", {
                 selectedInterest,
                 selectedExperience,
                 selectedBudget,
-            })
-            // navigation.navigate("FifthStepSetup", {
-            //     selectedPreference,
-            //     selectedReason,
-            //     selectedBudget,
-            //     selectedTolerance: selected,
-            // });
+                selectedTolerance: selected,
+            });
         }
     };
 

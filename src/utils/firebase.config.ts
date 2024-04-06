@@ -20,19 +20,16 @@ import {
     Group,
     MessageItem,
     Notification,
-    SavedStock,
     User,
 } from "schema/types";
 
-console.log(process.env.FIREBASE_API_KEY)
-
 const firebaseConfig = {
-    apiKey: process.env.FIREBASE_API_KEY, 
-    authDomain: process.env.FIREBASE_AUTH_DOMAIN, 
-    projectId: process.env.FIREBASE_PROJECT_ID, 
-    storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
-    messagingSenderId: process.env.FIREBASE_MESSAGE_SENDER_ID,
-    appId: process.env.FIREBASE_APP_ID
+    apiKey: process.env.FIREBASE_API_KEY || 'AIzaSyC5IJYRAI0DvL-1iEvDz1OUtJRgX_WHEWQ',
+    authDomain: process.env.FIREBASE_AUTH_DOMAIN || 'lunalearn.firebaseapp.com',
+    projectId: process.env.FIREBASE_PROJECT_ID || 'lunalearn',
+    storageBucket: process.env.FIREBASE_STORAGE_BUCKET || 'lunalearn.appspot.com',
+    messagingSenderId: process.env.FIREBASE_MESSAGE_SENDER_ID || '982924213450',
+    appId: process.env.FIREBASE_APP_ID || '1:982924213450:web:2176c910e5a7260c4c8833',
 };
 // Initialize Firebase
 let app: FirebaseApp, auth: Auth, db: Firestore;
@@ -61,6 +58,9 @@ export const groupsCol = collectionConverter<Omit<Group, "docId">>("groups");
 
 export const stocksCol = (userId: string) =>
     collectionConverter<SavedStock>(`users/${userId}/stocks`);
+
+export const groupCol = (groupId: string) =>
+    collectionConverter<Omit<Group, "docId">>(`groups/${groupId}`);
 
 export const notificationsCol = (groupId: string) =>
     collectionConverter<Omit<Notification, "docId">>(`groups/${groupId}/notifications`);
