@@ -1,0 +1,24 @@
+{
+    "extends": "expo/tsconfig.base",
+    "compilerOptions": {
+        "jsx": "react-jsx",
+        "strict": true,
+        "allowJs": false,
+        "noImplicitAny": true,
+        "module": "es2022",
+        "baseUrl": ".",
+        "paths": {
+            "components/*": ["src/components/*"],
+            "context/*": ["src/context/*"],
+            "helperFunctions/*": ["src/helperFunctions/*"],
+            "hooks/*": ["src/hooks/*"],
+            "navigation/*": ["src/navigation/*"],
+            "screens/*": ["src/screens/*"],
+            "styles/*": ["src/styles/*"],
+            "schema/*": ["src/schema/*"],
+            "utils/*": ["src/utils/*"],
+            "assets/*": ["assets/*"]
+        },
+        "typeRoots": ["src/types"]
+    }
+}

@@ -1,0 +1,28 @@
+node_modules/
+android/
+ios/
+src/firebase/
+src/functions/
+.expo/
+.vscode/
+dist/
+npm-debug.*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+web-build/
+
+# macOS
+.DS_Store
+
+# env
+.env
+
+unused-code/
+
+launch_emulator.ps1
+
+firebase-debug.log
