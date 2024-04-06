@@ -2,31 +2,39 @@ import { CustomButton, CustomText } from "components/UI/CustomElements";
 import { useAuth } from "context/auth-context";
 import { ReactElement } from "react";
 import { FlatList, StyleSheet, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { UserExperience } from "schema/types";
+import { UserPreference } from "schema/types";
 
 const questions = [
     {
         choices: [
-            UserExperience.Beginner,
-            UserExperience.Intermediate,
-            UserExperience.Expert,
+            UserPreference.Sports,
+            UserPreference.Technology,
+            UserPreference.Gastronomy,
+            UserPreference.Entertainment,
+            UserPreference.Healthcare,
         ],
     },
 ];
 
-export const SecondStepSetup = ({ route }: { route: any }): ReactElement => { 
-    const [selected, setSelected] = useState<UserExperience>();
+export const FifthStepSetup = ({ route }: { route: any }): ReactElement => {
+    const [selected, setSelected] = useState<UserPreference>();
     const { editUser } = useAuth();
     const navigation = useNavigation<any>();
-    const { selectedInterest } = route.params;
+    const { selectedInterest, selectedExperience, selectedBudget, riskTolerance } = route.params;
 
-
-    const next = () => {
+    const next = async () => {
         if (selected !== undefined) {
-            navigation.navigate("ThirdStepSetup", { selectedInterest, selectedExperience: selected });
+            await editUser({
+                riskTolerance,
+                selectedInterest,
+                selectedExperience,
+                selectedBudget,
+                selectedPreference: selected,
+                accountFinished: true,
+            });
         }
     };
 
@@ -37,7 +45,7 @@ export const SecondStepSetup = ({ route }: { route: any }): ReactElement => {
     return (
         <SafeAreaView style={styles.rootContainer}>
             <View style={styles.contentContainer}>
-                <CustomText style={styles.title}>{`What is your experience level?`}</CustomText>
+                <CustomText style={styles.title}>{`What is your risk tolerance?`}</CustomText>
                 <CustomText style={styles.description}>
                     We need to know this for regulatory reasons. And also, we're curious!
                 </CustomText>
@@ -46,7 +54,7 @@ export const SecondStepSetup = ({ route }: { route: any }): ReactElement => {
                         <FlatList
                             key={index}
                             data={question.choices}
-                            numColumns={1}
+                            numColumns={2}
                             renderItem={({ item }) => (
                                 <CustomButton
                                     key={item}
@@ -72,11 +80,12 @@ export const SecondStepSetup = ({ route }: { route: any }): ReactElement => {
                     Previous
                 </CustomButton>
                 <CustomButton onPress={next} status="info" style={styles.button}>
-                    Next
+                    Finish
                 </CustomButton>
             </View>
         </SafeAreaView>
-)}
+    );
+};
 
 const styles = StyleSheet.create({
     rootContainer: {

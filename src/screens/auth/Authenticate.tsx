@@ -89,6 +89,7 @@ export const Authenticate = (): ReactElement => {
             await updateDoc(doc(db, `users/${user.uid}`), {
                 deviceToken,
             });
+            navigation.navigate("Dashboard")
         } catch (err) {
             err instanceof FirebaseError && setError(JSON.stringify(err.code));
             // switch (err.code) {
@@ -125,7 +126,6 @@ export const Authenticate = (): ReactElement => {
                 email: user.email || "",
                 photoURL: blankUser,
                 accountFinished: false,
-                userPreference: [],
                 phoneNumber: null,
                 userRole: UserRole.Student,
                 deviceToken,

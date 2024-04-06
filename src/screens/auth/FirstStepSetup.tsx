@@ -6,14 +6,7 @@ import { ScrollView } from "react-native-gesture-handler";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
-
-export enum UserInterest {
-    Learn = "Learn about investing",
-    TrackPortfolio = "Track and manage portfolio",
-    Explore = "Explore financial news and Trends",
-    Community = "Join the community",
-    Play = "Play and learn",
-}
+import {UserInterest} from "schema/types";
 
 const questions = [
     {

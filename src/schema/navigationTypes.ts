@@ -18,6 +18,10 @@ export type RootStackNavigatorParamList = {
     Setup: undefined;
     NestedSetup: undefined;
     Authenticate: undefined;
+    FirstStepSetup: undefined;
+    SecondStepSetup: undefined;
+    ThirdStepSetup: undefined;
+    FourthStepSetup: undefined;
     NestedAuthenticate: undefined;
     NestedDashboard: undefined;
     Dashboard: undefined;

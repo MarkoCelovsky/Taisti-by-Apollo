@@ -5,14 +5,7 @@ import { FlatList, StyleSheet, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
-
-export enum UserAreaOfInterest {
-  Stocks = "Stocks",
-  Bonds = "Bonds",
-  Cryptocurrencies = "Cryptocurrencies",
-  MutualFunds = "Mutual Funds/etfs",
-  Other = "Other",
-}
+import { UserAreaOfInterest } from "schema/types";
 
 const questions = [
     {

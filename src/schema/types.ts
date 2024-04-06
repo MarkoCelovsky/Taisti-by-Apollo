@@ -11,6 +11,7 @@ export type User = {
     selectedInterest: string | null;
     selectedBudget: string | null;
     selectedExperience: string | null;
+    selectedPreference: string | null;
     phoneNumber: string | null;
     photoURL: string | null;
     groupId: string | null;
@@ -19,6 +20,36 @@ export type User = {
     createdAt: Timestamp;
     userPreference: UserPreference;
 };
+
+export enum UserInterest {
+    Learn = "Learn about investing",
+    TrackPortfolio = "Track and manage portfolio",
+    Explore = "Explore financial news and Trends",
+    Community = "Join the community",
+    Play = "Play and learn",
+}
+
+export enum UserExperience {
+  Beginner = "Beginner",
+  Intermediate = "Intermediate",
+  Expert = "Expert",
+}
+
+export enum UserAreaOfInterest {
+  Stocks = "Stocks",
+  Bonds = "Bonds",
+  Cryptocurrencies = "Cryptocurrencies",
+  MutualFunds = "Mutual Funds/etfs",
+  Other = "Other",
+}
+
+export enum UserTolerance {
+    VeryCautios = "Very Cautious",
+    Cautious = "Cautious",
+    Neutral = "Neutral",
+    Aggressive = "Aggressive",
+    VeryAggressive = "Very Aggressive",
+}
 
 export enum UserPreference {
     Sports = "Sports",
