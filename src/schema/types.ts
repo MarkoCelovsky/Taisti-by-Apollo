@@ -7,6 +7,10 @@ export type User = {
     username: { firstName: string; lastName: string };
     fullName: string;
     userRole: UserRole;
+    riskTolerance: string | null;
+    selectedInterest: string | null;
+    selectedBudget: string | null;
+    selectedExperience: string | null;
     phoneNumber: string | null;
     photoURL: string | null;
     groupId: string | null;

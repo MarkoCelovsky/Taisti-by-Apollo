@@ -35,6 +35,12 @@ export const FourthStepSetup = ({ route }: { route: any }): ReactElement => {
     const next = () => {
         if (selected !== undefined) {
             console.log("Preferences:", selectedInterest, selectedExperience, selectedBudget, selected);
+            const updateUser = editUser({
+                riskTolerance: selected,
+                selectedInterest,
+                selectedExperience,
+                selectedBudget,
+            })
             // navigation.navigate("FifthStepSetup", {
             //     selectedPreference,
             //     selectedReason,
@@ -86,7 +92,7 @@ export const FourthStepSetup = ({ route }: { route: any }): ReactElement => {
                     Previous
                 </CustomButton>
                 <CustomButton onPress={next} status="info" style={styles.button}>
-                    Next
+                    Finish 
                 </CustomButton>
             </View>
         </SafeAreaView>

@@ -6,10 +6,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as WebBrowser from "expo-web-browser";
 import { FirebaseError } from "firebase/app";
-
 import { doc, getDoc, setDoc, Timestamp, updateDoc } from "firebase/firestore";
 import { z, ZodType } from "zod";
-
 import { BottomSwitch } from "components/auth/BottomSwitch";
 import { SignIn } from "components/auth/SignIn";
 import { SignInInputs } from "components/auth/SignInInputs";
@@ -24,6 +22,9 @@ import { stylesAuthForms } from "styles/main";
 import { SignInFormData, SignUpFormData } from "schema/form-types";
 import { AuthMode, NotificationTypes, User, UserRole } from "schema/types";
 import { db } from "utils/firebase.config";
+import { CustomButton } from "components/UI/CustomElements";
+import { t } from "i18next";
+import { useNavigation } from "@react-navigation/native";
 
 WebBrowser.maybeCompleteAuthSession();
 
@@ -53,7 +54,7 @@ export const Authenticate = (): ReactElement => {
     const [error, setError] = useState<string | null>(null);
     const { signUp, signIn } = useAuth();
     const { deviceToken } = useDeviceToken();
-
+    const navigation = useNavigation<any>();
     const {
         control,
         handleSubmit,
@@ -71,6 +72,7 @@ export const Authenticate = (): ReactElement => {
     });
 
     const signInHandler = async (data: SignInFormData) => {
+        console.log('trying to sign in')
         setIsLoading(true);
         try {
             const { user } = await signIn(data.email.toString(), data.password);
@@ -138,6 +140,7 @@ export const Authenticate = (): ReactElement => {
                     userId: user.uid,
                 }),
             );
+            navigation.navigate('FirstStepSetup')
         } catch (err) {
             err instanceof FirebaseError
                 ? setError(JSON.stringify(err.message))
@@ -154,35 +157,47 @@ export const Authenticate = (): ReactElement => {
         signInControl._reset();
         setAuthMode(mode);
     };
+
+    const renderAuthMode = () => {
+        switch (authMode) {
+            case "SignIn":
+                return (
+                    <View>
+                        <SignInInputs control={signInControl} errors={signInErrors} />
+                        <SignIn signInHandler={signInHandleSubmit(signInHandler)} />
+                    </View>
+                );
+            case "SignUp":
+                return (
+                    <View>
+                        <SignUpInputs control={control} errors={errors} />
+                        <SignUp signUpHandler={handleSubmit(signUpHandler)} />
+                    </View>
+                );
+            default:
+                return (
+                    <View style={styles.actionButtons} className="my-4 gap-4">
+                        <CustomButton status="info" onPress={() => setAuthMode("SignIn")}>
+                           {t('Sign In').toString()} 
+                        </CustomButton>
+                        <CustomButton status="info" onPress={() => setAuthMode("SignUp")}>
+                           {t('Sign Up').toString()}
+                        </CustomButton>
+                    </View>
+                );
+        }
+    };
+
     return (
         <KeyboardAvoidingWrapper>
             <SafeAreaView style={styles.rootContainer}>
                 <View style={styles.authContainer}>
                     {isLoading ? <LoadingSpinner style={stylesAuthForms.loadingSpinner} /> : null}
-                    <View className="items-center justify-center">
-                        <Image
-                            source={require("assets/mathify.png")}
-                            resizeMode="stretch"
-                            style={styles.logo}
-                            alt="Mathify logo"
-                            accessibilityIgnoresInvertColors
-                        />
-                    </View>
                     <View style={styles.formCtr}>
-                        {authMode === "SignIn" ? (
-                            <SignInInputs control={signInControl} errors={signInErrors} />
-                        ) : (
-                            <SignUpInputs control={control} errors={errors} />
-                        )}
+                        {renderAuthMode()}
                         {error ? <ErrorMessage error={error} /> : null}
-                        {authMode === "SignIn" ? (
-                            <SignIn signInHandler={signInHandleSubmit(signInHandler)} />
-                        ) : (
-                            <SignUp signUpHandler={handleSubmit(signUpHandler)} />
-                        )}
                     </View>
                 </View>
-
                 <BottomSwitch authMode={authMode} changeMode={changeMode} />
             </SafeAreaView>
         </KeyboardAvoidingWrapper>
@@ -190,7 +205,7 @@ export const Authenticate = (): ReactElement => {
 };
 
 const styles = StyleSheet.create({
-    rootContainer: { flex: 1, padding: 4 },
+    rootContainer: { flex: 1, padding: 4, backgroundColor: "#181921" },
     logo: { height: 124, width: 124, borderRadius: 8 },
     authContainer: { flex: 1, justifyContent: "center" },
     googleButton: { padding: 12, paddingHorizontal: 32 },

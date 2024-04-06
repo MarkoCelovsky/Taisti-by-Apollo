@@ -50,7 +50,7 @@ export const NestedAuthScreens = () => {
 export const NestedSetupScreens = () => {
     return (
         <Navigator
-            initialRouteName={Screens.FirstStepSetup}
+            initialRouteName={Screens.Authenticate}
             screenOptions={{
                 headerBackTitleVisible: false,
                 animation: "slide_from_right",
@@ -59,6 +59,7 @@ export const NestedSetupScreens = () => {
                 headerTitleAlign: "center",
             }}
         >
+            <Screen name={Screens.Authenticate} component={Authenticate} options={{ headerShown: false }} />
             <Screen name={Screens.FirstStepSetup} component={FirstStepSetup} options={{ headerShown: false }} />
             <Screen name={Screens.SecondStepSetup} component={SecondStepSetup} options={{ headerShown: false }} />
             <Screen name={Screens.ThirdStepSetup} component={ThirdStepSetup} options={{ headerShown: false }} />

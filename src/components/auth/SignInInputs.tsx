@@ -6,7 +6,7 @@ import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { t } from "i18next";
 
-import { CustomInput, CustomText } from "components/UI/CustomElements";
+import { CustomButton, CustomInput, CustomText } from "components/UI/CustomElements";
 import { Screens } from "screens/screen-names";
 import { stylesAuthForms } from "styles/main";
 import { SignInFormData } from "schema/form-types";
