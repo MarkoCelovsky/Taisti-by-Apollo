@@ -40,5 +40,5 @@ export const BottomSwitch = ({ authMode, changeMode }: Props): ReactElement => {
 
 const styles = StyleSheet.create({
     bottomSwitch: { marginBottom: 24 },
-    btn: { flex: 1, paddingTop: 24, textAlign: "center" },
+    btn: { flex: 1, paddingTop: 24, textAlign: "center", color: "#fff"},
 });

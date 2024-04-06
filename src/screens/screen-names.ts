@@ -9,8 +9,12 @@ export enum ProfileScreens {
 
 export enum Screens {
     NestedSetup = "NestedSetup",
-    Setup = "Setup",
-
+    Auth = "Auth",
+    FirstStepSetup = "FirstStepSetup",
+    SecondStepSetup = "SecondStepSetup",
+    ThirdStepSetup = "ThirdStepSetup",
+    FourthStepSetup = "FourthStepSetup",
+    FifthStepSetup = "FifthStepSetup",
     NewEquation = "NewEquation",
     Authenticate = "Authenticate",
     NestedAuthenticate = "NestedAuthenticate",
