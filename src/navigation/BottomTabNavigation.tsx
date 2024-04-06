@@ -1,9 +1,8 @@
 import { ReactElement } from "react";
-import { StyleProp, TextStyle } from "react-native";
+import { StyleProp, TextStyle, View, StyleSheet } from "react-native";
 import { FontAwesome5, Ionicons } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { t } from "i18next";
-
 import { useAuth } from "context/auth-context";
 import { Screens } from "screens/screen-names";
 
@@ -13,7 +12,10 @@ import {
     NestedDashboardScreens,
     NestedProfileScreens,
     NestedSetupScreens,
+    NestedDashboardScreens2,
+    NestedDashboardScreens3,
 } from "./CustomNavigation";
+import { LinearGradient } from "expo-linear-gradient";
 
 const { Navigator, Screen } = createBottomTabNavigator();
 
@@ -29,15 +31,70 @@ interface FontAwesomeProps {
     color: string;
     name: string;
 }
+const styles = StyleSheet.create({
+    lightbulbContainer: {
+        width: 60,
+        height: 60,
+        borderRadius: 30,
+        backgroundColor: "#242728",
+        alignItems: "center",
+        justifyContent: "center",
+        position: "absolute",
+        top: -30,
+        alignSelf: "center",
+        zIndex: 1,
+    },
+    lightbulbIcon: {
+        width: "100%",
+        height: "100%",
+        alignItems: "center",
+        justifyContent: "center",
+        borderRadius: 30,
+        overflow: "hidden",
+    },
+    borderCircle: {
+        position: "absolute",
+        width: "100%",
+        height: "100%",
+        borderWidth: 2,
+        borderColor: "#0094FF",
+        borderTopLeftRadius: 35,
+        borderTopRightRadius: 35,
+        borderBottomLeftRadius: 0,
+        borderBottomRightRadius: 0,
+        overflow: "hidden",
+    },
+    borderMask: {
+        position: "absolute",
+        width: "100%",
+        height: "35%",
+        bottom: 0,
+        backgroundColor: "#242728", 
+    },
+});
 
 const tabBarIoniconsComponent = ({ color, name, size, style }: IoniconsProps) => (
     <Ionicons name={name} size={size} color={color} style={style} />
 );
 
-const tabBarFontAwesomeComponent = ({ color, name, size }: FontAwesomeProps) => (
-    <FontAwesome5 name={name} size={size} color={color} />
-);
-
+const tabBarFontAwesomeComponent = (
+    { color, name, size }: FontAwesomeProps,
+    isLightbulb: boolean,
+) => {
+    if (isLightbulb) {
+        return (
+            <View style={styles.lightbulbContainer}>
+                <View style={styles.lightbulbIcon}>
+                    <View style={styles.borderCircle} />
+                    <View style={styles.borderMask} />
+                    <FontAwesome5 name={name} size={size} color={color} />
+                </View>
+            </View>
+        );
+    } else {
+        return <FontAwesome5 name={name} size={size} color={color} />;
+    }
+};
 export const BottomTabNavigation = (): ReactElement => {
     const { user } = useAuth();
 
@@ -76,8 +133,11 @@ export const BottomTabNavigation = (): ReactElement => {
             screenOptions={{
                 headerShadowVisible: false,
                 headerTitleAlign: "center",
-                tabBarActiveTintColor: "#0A4680",
-                tabBarInactiveTintColor: "#C0C0C0",
+                tabBarActiveTintColor: "#006DFC",
+                tabBarInactiveTintColor: "#fff",
+                tabBarStyle: {
+                    backgroundColor: "#242728",
+                },
             }}
         >
             <Screen
@@ -88,7 +148,7 @@ export const BottomTabNavigation = (): ReactElement => {
                         tabBarFontAwesomeComponent({
                             color,
                             size,
-                            name: "tasks",
+                            name: "home",
                         }),
                     title: `${t("Dashboard")}`,
                     headerShown: false,
@@ -102,7 +162,7 @@ export const BottomTabNavigation = (): ReactElement => {
                         tabBarIoniconsComponent({
                             color,
                             size,
-                            name: "chatbubble-ellipses-outline",
+                            name: "bar-chart",
                         }),
                     headerShown: false,
                     title: `${t("Messages")}`,
@@ -113,10 +173,41 @@ export const BottomTabNavigation = (): ReactElement => {
                 component={NestedProfileScreens}
                 options={{
                     tabBarIcon: ({ color, size }) =>
+                        tabBarFontAwesomeComponent(
+                            {
+                                color,
+                                size,
+                                name: "lightbulb",
+                            },
+                            true,
+                        ),
+                    title: `${t("Profile")}`,
+                    headerShown: false,
+                }}
+            />
+            <Screen
+                name={Screens.NestedDashboard2}
+                component={NestedDashboardScreens2}
+                options={{
+                    tabBarIcon: ({ color, size }) =>
                         tabBarFontAwesomeComponent({
                             color,
                             size,
-                            name: "user-alt",
+                            name: "book",
+                        }),
+                    title: `${t("Profile")}`,
+                    headerShown: false,
+                }}
+            />
+            <Screen
+                name={Screens.NestedDashboard3}
+                component={NestedDashboardScreens3}
+                options={{
+                    tabBarIcon: ({ color, size }) =>
+                        tabBarFontAwesomeComponent({
+                            color,
+                            size,
+                            name: "globe",
                         }),
                     title: `${t("Profile")}`,
                     headerShown: false,

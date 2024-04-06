@@ -187,3 +187,79 @@ export const NestedDashboardScreens = () => {
         </Navigator>
     );
 };
+
+export const NestedDashboardScreens2 = () => {
+    return (
+        <Navigator
+            screenOptions={{
+                headerBackTitleVisible: false,
+                animation: "simple_push",
+                gestureEnabled: true,
+                gestureDirection: "horizontal",
+                headerShadowVisible: false,
+                headerTitleAlign: "center",
+            }}
+        >
+            <Screen
+                name={Screens.Dashboard}
+                component={Dashboard}
+                options={{
+                    headerShown: false,
+                }}
+            />
+            <Screen
+                name={Screens.MyEquations}
+                component={MyEquations}
+                options={{ title: t("My assets").toString() }}
+            />
+            <Screen
+                name={Screens.NewEquation}
+                component={NewEquation}
+                options={{ title: t("New Equation").toString() }}
+            />
+            <Screen
+                name={Screens.Notifications}
+                component={Notifications}
+                options={{ title: t("Notifications").toString() }}
+            />
+        </Navigator>
+    );
+};
+
+export const NestedDashboardScreens3 = () => {
+    return (
+        <Navigator
+            screenOptions={{
+                headerBackTitleVisible: false,
+                animation: "simple_push",
+                gestureEnabled: true,
+                gestureDirection: "horizontal",
+                headerShadowVisible: false,
+                headerTitleAlign: "center",
+            }}
+        >
+            <Screen
+                name={Screens.Dashboard}
+                component={Dashboard}
+                options={{
+                    headerShown: false,
+                }}
+            />
+            <Screen
+                name={Screens.MyEquations}
+                component={MyEquations}
+                options={{ title: t("My assets").toString() }}
+            />
+            <Screen
+                name={Screens.NewEquation}
+                component={NewEquation}
+                options={{ title: t("New Equation").toString() }}
+            />
+            <Screen
+                name={Screens.Notifications}
+                component={Notifications}
+                options={{ title: t("Notifications").toString() }}
+            />
+        </Navigator>
+    );
+};

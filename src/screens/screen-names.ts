@@ -19,6 +19,8 @@ export enum Screens {
     Authenticate = "Authenticate",
     NestedAuthenticate = "NestedAuthenticate",
     NestedDashboard = "NestedDashboard",
+    NestedDashboard2 = "NestedDashboard2",
+    NestedDashboard3 = "NestedDashboard3",
     Dashboard = "Dashboard",
     NestedProfile = "NestedProfile",
     Profile = "Profile",

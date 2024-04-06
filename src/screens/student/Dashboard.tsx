@@ -182,7 +182,7 @@ export const Dashboard = (): ReactElement => {
                             />
                             <View>
                                 <Heading>{dashboardGreeting()},</Heading>
-                                <CustomText category="h5">
+                                <CustomText category="h5" style={{ color: "#fff" }}>
                                     {user?.username.firstName + " "}
                                     {user?.username.lastName}
                                     👋
@@ -199,7 +199,7 @@ export const Dashboard = (): ReactElement => {
                         >
                             <View style={styles.iconContainer}>
                                 <BadgeIcon badgeCount={messagesQty}>
-                                    <Feather name="bell" size={34} color="black" />
+                                    <Feather name="bell" size={34} color="white" />
                                 </BadgeIcon>
                             </View>
                         </Pressable>
@@ -207,8 +207,8 @@ export const Dashboard = (): ReactElement => {
                 </View>
 
                 <View style={styles.lessonList}>
-                    <CustomText category="h4" className="p-4">
-                        Recomendations
+                    <CustomText category="h4" className="p-4 text-white">
+                        {t(`Recomendations`).toString()} 
                     </CustomText>
                     <FlatList
                         data={stocks}
@@ -264,7 +264,7 @@ export const Dashboard = (): ReactElement => {
                 </View>
 
                 <View style={styles.btn}>
-                    <CustomButton size="giant" onPress={() => navigate(Screens.NewEquation)}>
+                    <CustomButton status='info' size="giant" onPress={() => navigate(Screens.NewEquation)}>
                         Buy Stocks
                     </CustomButton>
                 </View>
@@ -275,6 +275,9 @@ export const Dashboard = (): ReactElement => {
                     enableDynamicSizing
                     onDismiss={handleCloseModal}
                     backdropComponent={renderBackdrop}
+                    backgroundStyle={{
+                        backgroundColor: "#242728",
+                    }}
                 >
                     <BuyStock
                         stock={selectedStock}
@@ -288,7 +291,7 @@ export const Dashboard = (): ReactElement => {
 };
 
 const styles = StyleSheet.create({
-    rootContainer: { flex: 1 },
+    rootContainer: { flex: 1, backgroundColor: "#181921", color: "#fff" },
     modal: { padding: 16, paddingBottom: 32 },
     btn: { position: "absolute", bottom: 4, paddingHorizontal: 16, width: "100%" },
     lessonList: { marginTop: 10 },
@@ -310,8 +313,7 @@ const styles = StyleSheet.create({
 const Card = ({ item }: { item: Stock }) => (
     <View
         style={{
-            backgroundColor: "#f5f5f5",
-            borderColor: "#ddd",
+            backgroundColor: "#242728",
             borderRadius: 8,
             marginRight: 8,
         }}
@@ -324,7 +326,7 @@ const Card = ({ item }: { item: Stock }) => (
             }}
         >
             <View>
-                <CustomText category="h6" style={{ color: "#000" }}>
+                <CustomText category="h6" style={{ color: "#fff" }}>
                     {item.symbol}
                 </CustomText>
                 <CustomText category="p2" style={{ color: "#888" }}>
@@ -332,7 +334,7 @@ const Card = ({ item }: { item: Stock }) => (
                 </CustomText>
             </View>
             <View>
-                <CustomText category="h6" style={{ color: "#000" }}>
+                <CustomText category="h6" style={{ color: "#fff" }}>
                     {item.currentPrice.toFixed(2)}
                 </CustomText>
                 <CustomText
