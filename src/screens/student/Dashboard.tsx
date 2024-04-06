@@ -96,7 +96,7 @@ export const Dashboard = (): ReactElement => {
     );
 
     useEffect(() => {
-        const q = query(stocksCol(userId || ""));
+        const q = query(stocksCol(userId || "test"));
         const unsubscribe = onSnapshot(q, (querySnapshot) => {
             try {
                 setMyStocks(querySnapshot.docs.map((doc) => ({ ...doc.data(), docId: doc.id })));
