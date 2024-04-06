@@ -166,7 +166,7 @@ export const NestedDashboardScreens = () => {
             <Screen
                 name={Screens.MyEquations}
                 component={MyEquations}
-                options={{ title: t("Equations").toString() }}
+                options={{ title: t("My assets").toString() }}
             />
             <Screen
                 name={Screens.NewEquation}

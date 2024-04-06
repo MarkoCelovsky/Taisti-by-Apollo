@@ -25,7 +25,6 @@ import moment from "moment";
 import { CustomToast } from "components/CustomToast";
 import { MessageItem } from "components/UI/MessageItem";
 import { useAuth } from "context/auth-context";
-import { useAdmin } from "hooks/useAdmin";
 import { useNotification } from "hooks/useNotification";
 import { Screens } from "screens/screen-names";
 import { RootStackNavigatorParamList } from "schema/navigationTypes";
@@ -50,7 +49,7 @@ export const Notifications = (): ReactElement => {
         setIsLoading(true);
         try {
             const q = query(
-                notificationsCol(user?.drivingSchoolId || ""),
+                notificationsCol(""),
                 where("receiverId", "array-contains", userId),
                 orderBy("createdAt", "desc"),
             );
@@ -68,7 +67,7 @@ export const Notifications = (): ReactElement => {
         } finally {
             setIsLoading(false);
         }
-    }, [user?.drivingSchoolId, userId]);
+    }, [userId]);
 
     useEffect(() => {
         isFocused && getMessages();
@@ -89,108 +88,6 @@ export const Notifications = (): ReactElement => {
             <BottomSheetBackdrop {...props} appearsOnIndex={0} disappearsOnIndex={-1} />
         ),
         [],
-    );
-
-    const openMessageModal = async (message: Message) => {
-        try {
-            setIsLoading(true);
-            if (message.rideId) {
-                const rideData = await getRide(message.rideId);
-                setLastMinuteRide(rideData);
-            }
-            setSelectedMessage(message);
-            openModalHandler();
-        } catch (err) {
-            console.error(err);
-        } finally {
-            setIsLoading(false);
-        }
-    };
-
-    const addPlaceNavigateHandler = useCallback(() => {
-        navigate(Screens.MyPlaces);
-        handleCloseModal();
-    }, [navigate, handleCloseModal]);
-
-    const showInstructorProfileHandler = (instructorId: string) => {
-        handleCloseModal();
-        navigate(Screens.InstructorProfile, {
-            instructorId,
-            drivingSchoolId: user?.drivingSchoolId ? user.drivingSchoolId : "",
-        });
-    };
-
-    const bookRideHandler = useCallback(
-        async (rideId: string, startRideFrom: Place, dayTime: number) => {
-            if (!user) {
-                return Toast.show({
-                    type: "error",
-                    text1: t("Can't book a ride!").toString(),
-                    text2: t("Sorry something went wrong!").toString(),
-                });
-            }
-            try {
-                const ride = await getRide(rideId);
-
-                if (ride && ride.booked) {
-                    setMessages((curr) =>
-                        curr.filter((msg) => msg.docId !== selectedMessage?.docId),
-                    );
-                    handleCloseModal();
-                    // TODO: maybe implement some failed booking screen
-                    return Toast.show({
-                        type: "error",
-                        text1: t("Somebody already took it!").toString(),
-                        text2: t("Sorry something went wrong!").toString(),
-                    });
-                }
-
-                await updateDoc(doc(db, `drivingSchools/${user.drivingSchoolId}/rides/${rideId}`), {
-                    student: {
-                        userId: user.userId,
-                        username: user.username,
-                        photoURL: user.photoURL,
-                        phoneNumber: user.phoneNumber,
-                    },
-                    booked: true,
-                    goFrom: startRideFrom,
-                });
-                setMessages((curr) => curr.filter((msg) => msg.docId !== selectedMessage?.docId));
-                await deleteDoc(
-                    doc(
-                        db,
-                        `drivingSchools/${user?.drivingSchoolId}/messages/${selectedMessage?.docId}`,
-                    ),
-                );
-                const includes = user.notificationPreferences.includes(NotificationTypes.REMINDER);
-                // TODO: notify instructor that the ride has been already booked
-                if (includes) {
-                    scheduleLocalNotification(dayTime, ["24", "1"]);
-                }
-                const inst = await getAdmin(ride?.docId || "");
-                inst &&
-                    (await notify({
-                        receiverId: [inst.userId],
-                        to: [inst.deviceToken || ""],
-                        title: "Last minute jazda rezervovaná",
-                        message: `Študent ${user.fullName} sa prihlásil na jazdu dňa ${moment(
-                            ride?.dayTime,
-                        ).format("D/M/YYYY [o] HH:mm")}`,
-                    }));
-            } catch (err) {
-                handleCloseModal();
-                Toast.show({
-                    type: "error",
-                    text1: t("Can't book a ride!").toString(),
-                    text2: t("Sorry something went wrong!").toString(),
-                });
-                return;
-            }
-            handleCloseModal();
-            setLastMinuteRide(null);
-            navigate(Screens.SuccessBooking);
-        },
-        [user, handleCloseModal, navigate, getRide, selectedMessage, getAdmin, notify],
     );
 
     const removeMessageHandler = async (msgId: string) => {
@@ -283,22 +180,11 @@ export const Notifications = (): ReactElement => {
                 onDismiss={() => bottomSheetModalRef.current?.dismiss()}
                 backdropComponent={renderBackdrop}
             >
-                {selectedMessage?.rideId ? (
-                    <ReserveRideModal
-                        ride={lastMinuteRide}
-                        bookRideHandler={bookRideHandler}
-                        handleCloseModal={handleCloseModal}
-                        addPlaceNavigateHandler={addPlaceNavigateHandler}
-                        places={user?.places || []}
-                        showInstructorProfile={showInstructorProfileHandler}
-                    />
-                ) : (
-                    <NotificationModal
-                        message={selectedMessage}
-                        handleCloseModal={handleCloseModal}
-                        onDelete={removeMessageHandler}
-                    />
-                )}
+                <NotificationModal
+                    message={selectedMessage}
+                    handleCloseModal={handleCloseModal}
+                    onDelete={removeMessageHandler}
+                />
             </BottomSheetModal>
             <CustomToast />
         </>

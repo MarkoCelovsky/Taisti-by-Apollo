@@ -43,34 +43,6 @@ export const Profile = (): ReactElement => {
 
     const data = useMemo(
         () => ({
-            admin: [
-                {
-                    text: t("Edit profile"),
-                    screen: ProfileScreens.EditProfile,
-                },
-                {
-                    text: t("Language preferences"),
-                    screen: ProfileScreens.LanguagePreferences,
-                },
-                {
-                    text: t("Notification preferences"),
-                    screen: ProfileScreens.NotificationPreferences,
-                },
-                // {
-                //     text: t("Public profile"),
-                //     screen: ProfileScreens.EditInstructorProfile,
-                // },
-                {
-                    text: t("Applications"),
-                    screen: ProfileScreens.ResolveApplications,
-                },
-                {
-                    text: t("Log out"),
-                    isSignOut: true,
-                    screen: ProfileScreens.NotificationPreferences,
-                },
-            ],
-
             student: [
                 {
                     text: t("Edit profile"),
@@ -83,10 +55,6 @@ export const Profile = (): ReactElement => {
                 {
                     text: t("Notification preferences"),
                     screen: ProfileScreens.NotificationPreferences,
-                },
-                {
-                    text: "Driving school profile",
-                    screen: ProfileScreens.DrivingSchoolProfile,
                 },
                 {
                     text: t("Log out"),

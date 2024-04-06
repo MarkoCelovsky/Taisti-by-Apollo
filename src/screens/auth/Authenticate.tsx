@@ -123,6 +123,7 @@ export const Authenticate = (): ReactElement => {
                 email: user.email || "",
                 photoURL: blankUser,
                 accountFinished: false,
+                userPreference: [],
                 phoneNumber: null,
                 userRole: UserRole.Student,
                 deviceToken,

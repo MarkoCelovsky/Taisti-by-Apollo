@@ -20,6 +20,7 @@ import {
     Group,
     MessageItem,
     Notification,
+    SavedStock,
     User,
 } from "schema/types";
 
@@ -56,8 +57,8 @@ export const usersCol = collectionConverter<Omit<User, "userId">>("users");
 
 export const groupsCol = collectionConverter<Omit<Group, "docId">>("groups");
 
-export const groupCol = (groupId: string) =>
-    collectionConverter<Omit<Group, "docId">>(`groups/${groupId}`);
+export const stocksCol = (userId: string) =>
+    collectionConverter<SavedStock>(`users/${userId}/stocks`);
 
 export const notificationsCol = (groupId: string) =>
     collectionConverter<Omit<Notification, "docId">>(`groups/${groupId}/notifications`);

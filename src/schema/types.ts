@@ -13,7 +13,37 @@ export type User = {
     accountFinished: boolean;
     notificationPreferences: Array<NotificationTypes>;
     createdAt: Timestamp;
+    userPreference: UserPreference;
 };
+
+export enum UserPreference {
+    Sports = "Sports",
+    Gastronomy = "Gastronomy",
+    Healthcare = "Healthcare",
+    Entertainment = "Entertainment",
+    Technology = "Technology", // Add two more preferences here (e.g., 'Entertainment', 'Healthcare')
+}
+
+type PriceChange = {
+    date: number; // Date of the price change (e.g., YYYY-MM-DD)
+    price: number; // Price on that date
+    change: number; // Change in price compared to the previous day
+    changePercent: number; // Percentage change in price compared to the previous day
+};
+
+export type Stock = {
+    symbol: string;
+    companyName: string;
+    finalTotal?: number;
+    currentPrice: number;
+    userPreference?: UserPreference; // Optional: User preference category for the stock
+    priceChanges: PriceChange[]; // Array of price changes for the past few days
+};
+
+export interface SavedStock extends Stock {
+    docId: string;
+    amount: number;
+}
 
 export type Group = { createdAt: number; name: string; docId: string };
 

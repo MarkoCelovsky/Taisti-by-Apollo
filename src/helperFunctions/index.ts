@@ -83,15 +83,15 @@ export const dashboardGreeting = (): string => {
 export const notiPreferencesTranslator = (name: NotificationTypes): string => {
     switch (name) {
         case NotificationTypes.REMINDER:
-            return t("Reminder before ride / lesson");
+            return t("Stock price moving");
         case NotificationTypes.DAILY_PRACTICE:
-            return t("Daily practice");
+            return t("Daily learning challenge");
         case NotificationTypes.LAST_MINUTE_EVENT:
-            return t("Last minute ride available");
+            return t("New feature notification");
         case NotificationTypes.CANCELED_EVENT:
-            return t("Canceled ride / lesson");
+            return t("New suggested stocks");
         case NotificationTypes.CHAT_MESSAGE:
-            return t("Chat message notification");
+            return t("Suspicious movement on the account");
         case NotificationTypes.NEW_APPLICATION:
             return t("New application notification");
     }
