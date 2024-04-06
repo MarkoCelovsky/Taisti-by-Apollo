@@ -337,16 +337,16 @@ const Card = ({ item }: { item: Stock }) => (
                 <CustomText category="h6" style={{ color: "#fff" }}>
                     {item.currentPrice.toFixed(2)}
                 </CustomText>
-                <CustomText
-                    category="p2"
-                    style={{
-                        color: item.finalTotal && item.finalTotal > 0 ? "#008000" : "#ff0000",
-                    }}
-                >
-                    {" "}
-                    ({item.finalTotal > 0 ? "+" : ""}
-                    {item.finalTotal.toFixed(2)}%)
-                </CustomText>
+                {/* <CustomText */}
+                {/*     category="p2" */}
+                {/*     style={{ */}
+                {/*         color: item.finalTotal && item.finalTotal > 0 ? "#008000" : "#ff0000", */}
+                {/*     }} */}
+                {/* > */}
+                {/*     {" "} */}
+                {/*     ({item.finalTotal > 0 ? "+" : ""} */}
+                {/*     {item.finalTotal.toFixed(2)}%) */}
+                {/* </CustomText> */}
             </View>
         </View>
     </View>

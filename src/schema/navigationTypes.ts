@@ -32,7 +32,7 @@ export type RootStackNavigatorParamList = {
     NestedAdminDashboard: undefined;
     AdminDashboard: undefined;
     Notifications: undefined;
-    Conversations: undefined;
+    PopularMarket: undefined;
     LanguagePreferences: undefined;
     NotificationPreferences: undefined;
     NewEquation: undefined;

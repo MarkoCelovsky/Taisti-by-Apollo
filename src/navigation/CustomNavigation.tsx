@@ -7,7 +7,7 @@ import { Screens } from "screens/screen-names";
 import { Chat } from "screens/shared/Chat";
 import { ChatDetails } from "screens/shared/ChatDetails";
 import { ChatMembers } from "screens/shared/ChatMembers";
-import { Conversations } from "screens/shared/Conversations";
+import { PopularMarket } from "screens/shared/PopularMarket";
 import { EditProfile } from "screens/shared/EditProfile";
 import { LanguagePreferences } from "screens/shared/LanguagePreferences";
 import { NotificationPreferences } from "screens/shared/NotificationPreferences";
@@ -85,8 +85,8 @@ export const NestedConversationsScreens = () => {
             }}
         >
             <Screen
-                name={Screens.Conversations}
-                component={Conversations}
+                name={Screens.PopularMarket}
+                component={PopularMarket}
                 options={{ headerShown: false }}
             />
             <Screen name={Screens.Chat} component={Chat} />

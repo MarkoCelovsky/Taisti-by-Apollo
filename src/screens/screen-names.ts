@@ -51,7 +51,7 @@ export enum Screens {
     NotificationPreferences = "NotificationPreferences",
     ResolveApplications = "ResolveApplications",
     NestedConversations = "NestedConversations",
-    Conversations = "Conversations",
+    PopularMarket = "PopularMarket",
     Chat = "Chat",
     ChatDetails = "ChatDetails",
     ChatMembers = "ChatMembers",

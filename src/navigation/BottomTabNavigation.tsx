@@ -79,7 +79,7 @@ const tabBarIoniconsComponent = ({ color, name, size, style }: IoniconsProps) =>
 
 const tabBarFontAwesomeComponent = (
     { color, name, size }: FontAwesomeProps,
-    isLightbulb: boolean,
+    isLightbulb?: boolean,
 ) => {
     if (isLightbulb) {
         return (
@@ -181,7 +181,7 @@ export const BottomTabNavigation = (): ReactElement => {
                             },
                             true,
                         ),
-                    title: `${t("Profile")}`,
+                    title: `${t("AI")}`,
                     headerShown: false,
                 }}
             />
@@ -195,7 +195,7 @@ export const BottomTabNavigation = (): ReactElement => {
                             size,
                             name: "book",
                         }),
-                    title: `${t("Profile")}`,
+                    title: `${t("Learning")}`,
                     headerShown: false,
                 }}
             />
@@ -209,7 +209,7 @@ export const BottomTabNavigation = (): ReactElement => {
                             size,
                             name: "globe",
                         }),
-                    title: `${t("Profile")}`,
+                    title: `${t("Community")}`,
                     headerShown: false,
                 }}
             />
