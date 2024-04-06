@@ -11,5 +11,5 @@ export const Heading = ({ children }: Props): ReactElement => {
 };
 
 const styles = StyleSheet.create({
-    heading: { fontSize: 32, fontWeight: "700" },
+    heading: { fontSize: 32, fontWeight: "700", color: "white"},
 });

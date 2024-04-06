@@ -21,6 +21,7 @@ import {
     MessageItem,
     Notification,
     User,
+    SavedStock,
 } from "schema/types";
 
 const firebaseConfig = {
@@ -29,7 +30,7 @@ const firebaseConfig = {
     projectId: process.env.FIREBASE_PROJECT_ID,
     storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
     messagingSenderId: process.env.FIREBASE_MESSAGE_SENDER_ID,
-  appId: process.env.FIREBASE_APP_ID,
+    appId: process.env.FIREBASE_APP_ID,
 };
 // Initialize Firebase
 let app: FirebaseApp, auth: Auth, db: Firestore;
@@ -55,7 +56,6 @@ export const collectionConverter = <T = DocumentData>(collectionName: string) =>
 export const usersCol = collectionConverter<Omit<User, "userId">>("users");
 
 export const groupsCol = collectionConverter<Omit<Group, "docId">>("groups");
-
 export const stocksCol = (userId: string) =>
     collectionConverter<SavedStock>(`users/${userId}/stocks`);
 

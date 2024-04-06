@@ -7,7 +7,7 @@ import { Screens } from "screens/screen-names";
 import { Chat } from "screens/shared/Chat";
 import { ChatDetails } from "screens/shared/ChatDetails";
 import { ChatMembers } from "screens/shared/ChatMembers";
-import { Conversations } from "screens/shared/Conversations";
+import { PopularMarket } from "screens/shared/PopularMarket";
 import { EditProfile } from "screens/shared/EditProfile";
 import { LanguagePreferences } from "screens/shared/LanguagePreferences";
 import { NotificationPreferences } from "screens/shared/NotificationPreferences";
@@ -85,8 +85,8 @@ export const NestedConversationsScreens = () => {
             }}
         >
             <Screen
-                name={Screens.Conversations}
-                component={Conversations}
+                name={Screens.PopularMarket}
+                component={PopularMarket}
                 options={{ headerShown: false }}
             />
             <Screen name={Screens.Chat} component={Chat} />
@@ -151,6 +151,82 @@ export const NestedProfileScreens = () => {
 };
 
 export const NestedDashboardScreens = () => {
+    return (
+        <Navigator
+            screenOptions={{
+                headerBackTitleVisible: false,
+                animation: "simple_push",
+                gestureEnabled: true,
+                gestureDirection: "horizontal",
+                headerShadowVisible: false,
+                headerTitleAlign: "center",
+            }}
+        >
+            <Screen
+                name={Screens.Dashboard}
+                component={Dashboard}
+                options={{
+                    headerShown: false,
+                }}
+            />
+            <Screen
+                name={Screens.MyEquations}
+                component={MyEquations}
+                options={{ title: t("My assets").toString() }}
+            />
+            <Screen
+                name={Screens.NewEquation}
+                component={NewEquation}
+                options={{ title: t("New Equation").toString() }}
+            />
+            <Screen
+                name={Screens.Notifications}
+                component={Notifications}
+                options={{ title: t("Notifications").toString() }}
+            />
+        </Navigator>
+    );
+};
+
+export const NestedDashboardScreens2 = () => {
+    return (
+        <Navigator
+            screenOptions={{
+                headerBackTitleVisible: false,
+                animation: "simple_push",
+                gestureEnabled: true,
+                gestureDirection: "horizontal",
+                headerShadowVisible: false,
+                headerTitleAlign: "center",
+            }}
+        >
+            <Screen
+                name={Screens.Dashboard}
+                component={Dashboard}
+                options={{
+                    headerShown: false,
+                }}
+            />
+            <Screen
+                name={Screens.MyEquations}
+                component={MyEquations}
+                options={{ title: t("My assets").toString() }}
+            />
+            <Screen
+                name={Screens.NewEquation}
+                component={NewEquation}
+                options={{ title: t("New Equation").toString() }}
+            />
+            <Screen
+                name={Screens.Notifications}
+                component={Notifications}
+                options={{ title: t("Notifications").toString() }}
+            />
+        </Navigator>
+    );
+};
+
+export const NestedDashboardScreens3 = () => {
     return (
         <Navigator
             screenOptions={{

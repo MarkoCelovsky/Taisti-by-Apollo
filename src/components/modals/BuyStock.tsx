@@ -7,6 +7,10 @@ import { Stock } from "schema/types";
 import { LineChart } from "react-native-chart-kit";
 import { LoadingSpinner } from "components/UI/LoadingSpinner";
 import moment from "moment";
+import Animated, { interpolate, interpolateColor, useAnimatedStyle } from "react-native-reanimated";
+import { useMemo } from "react";
+import { t } from "i18next";
+
 interface Props {
     handleCloseModal: () => void;
     stock: Stock | null;
@@ -23,8 +27,8 @@ export const BuyStock = ({ handleCloseModal, stock, buyHandler }: Props): ReactE
     return (
         <BottomSheetView style={styles.modal}>
             <View>
-                <CustomText category="h5" className="text-center">
-                    Stock price changes for {stock.companyName.toUpperCase()}
+                <CustomText category="h5" className="text-center text-white">
+                    {t(`Stock price changes for`).toString()} {stock.companyName.toUpperCase()}
                 </CustomText>
                 <LineChart
                     data={{
@@ -65,23 +69,23 @@ export const BuyStock = ({ handleCloseModal, stock, buyHandler }: Props): ReactE
                 />
             </View>
             <View>
-                <CustomText>Stocks amount: {amount.toFixed(0)}</CustomText>
+                <CustomText className="text-white">{t(`Stocks amount`).toString()}: {amount.toFixed(0)}</CustomText>
                 <Slider
                     style={{ width: "100%", height: 40 }}
                     minimumValue={0}
                     maximumValue={20}
-                    minimumTrackTintColor="#000000"
+                    minimumTrackTintColor="#fff"
                     onValueChange={(val) => setAmount(val)}
                     value={amount}
                 />
             </View>
             <View>
-                <CustomText category="h3" className="my-2">
-                    Final price: ${(amount * stock.currentPrice).toFixed(2)}
+                <CustomText category="h3" className="my-2 text-white">
+                    {t(`Final price`).toString()}: ${(amount * stock.currentPrice).toFixed(2)}
                 </CustomText>
             </View>
-            <CustomButton onPress={() => buyHandler(+amount.toFixed(0), stock)}>
-                Buy stock
+            <CustomButton status="info" onPress={() => buyHandler(+amount.toFixed(0), stock)}>
+                {t(`Buy stock`).toString()}
             </CustomButton>
         </BottomSheetView>
     );

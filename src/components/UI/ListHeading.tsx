@@ -20,7 +20,7 @@ export const ListHeading = ({
 }: Props): ReactElement => {
     return (
         <View className="mb-3 flex-row justify-between px-4" style={style}>
-            <CustomText className="text-lg font-bold">
+            <CustomText className="text-lg font-bold text-white">
                 {noTranslate ? heading : t(heading)}
             </CustomText>
             {showAll ? (
