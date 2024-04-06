@@ -17,7 +17,7 @@ import {
 import { doc, onSnapshot, updateDoc } from "firebase/firestore";
 import { getFunctions, httpsCallable, HttpsCallableResult } from "firebase/functions";
 import moment from "moment";
-
+import * as LocalAuthentication from "expo-local-authentication";
 import { LoadingSpinner } from "components/UI/LoadingSpinner";
 import { User, UserRole } from "schema/types";
 import { auth, db } from "utils/firebase.config";
@@ -55,10 +55,29 @@ SplashScreen.preventAutoHideAsync();
 
 export const AuthProvider = ({ children }: AuthProviderProps) => {
     const [userId, setUserId] = useState<string | null>(null);
+    const [authenticated, setAuthenticated] = useState(false);
     const [user, setUser] = useState<User | null>(null);
     const [isLoading, setIsLoading] = useState(true);
     const functions = getFunctions();
     const { i18n } = useTranslation();
+
+    const authenticateAsync = async () => {
+        try {
+            const result = await LocalAuthentication.authenticateAsync({
+                promptMessage: "Authenticate to access secure data",
+                cancelLabel: "Cancel",
+            });
+
+            if (result.success) {
+                console.log("Authentication successful!");
+                setAuthenticated(true);
+            } else {
+                console.log("Authentication failed:", result.error);
+            }
+        } catch (error) {
+            console.error("Error during authentication:", error);
+        }
+    };
 
     const signUp = (email: string, password: string): Promise<UserCredential> => {
         return createUserWithEmailAndPassword(auth, email, password);
@@ -114,6 +133,9 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
             return UserRole.Student;
         }
     };
+    useEffect(() => {
+        !authenticated && authenticateAsync();
+    }, [authenticated]);
 
     useEffect(() => {
         const saveLanguage = async () => {

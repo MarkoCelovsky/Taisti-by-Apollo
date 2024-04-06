@@ -12,6 +12,7 @@ import {
     NestedConversationsScreens,
     NestedDashboardScreens,
     NestedProfileScreens,
+    NestedSetupScreens,
 } from "./CustomNavigation";
 
 const { Navigator, Screen } = createBottomTabNavigator();
@@ -46,6 +47,21 @@ export const BottomTabNavigation = (): ReactElement => {
                 <Screen
                     name={Screens.NestedAuthenticate}
                     component={NestedAuthScreens}
+                    options={{
+                        tabBarStyle: { display: "none" },
+                        headerShown: false,
+                    }}
+                />
+            </Navigator>
+        );
+    }
+
+    if (!user.accountFinished) {
+        return (
+            <Navigator screenOptions={{ headerShadowVisible: false, headerTitleAlign: "center" }}>
+                <Screen
+                    name={Screens.NestedSetup}
+                    component={NestedSetupScreens}
                     options={{
                         tabBarStyle: { display: "none" },
                         headerShown: false,

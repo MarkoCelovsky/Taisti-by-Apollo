@@ -19,6 +19,7 @@ import { Dashboard } from "screens/student/Dashboard";
 import { RootStackNavigatorParamList } from "schema/navigationTypes";
 import { MyEquations } from "screens/student/MyEquations";
 import { NewEquation } from "screens/student/NewEquation";
+import { Setup } from "screens/auth/Setup";
 
 const { Navigator, Screen } = createNativeStackNavigator<RootStackNavigatorParamList>();
 
@@ -39,6 +40,23 @@ export const NestedAuthScreens = () => {
                 component={Authenticate}
                 options={{ headerShown: false }}
             />
+        </Navigator>
+    );
+};
+
+export const NestedSetupScreens = () => {
+    return (
+        <Navigator
+            initialRouteName={Screens.Setup}
+            screenOptions={{
+                headerBackTitleVisible: false,
+                animation: "slide_from_right",
+                gestureEnabled: true,
+                headerShadowVisible: false,
+                headerTitleAlign: "center",
+            }}
+        >
+            <Screen name={Screens.Setup} component={Setup} options={{ headerShown: false }} />
             <Screen
                 name={Screens.PasswordReset}
                 component={PasswordReset}

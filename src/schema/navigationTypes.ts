@@ -15,6 +15,8 @@ export type RootStackNavigatorParamList = {
     EditProfile: undefined;
     ResolveApplications: undefined;
 
+    Setup: undefined;
+    NestedSetup: undefined;
     Authenticate: undefined;
     NestedAuthenticate: undefined;
     NestedDashboard: undefined;

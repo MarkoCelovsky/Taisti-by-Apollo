@@ -122,6 +122,7 @@ export const Authenticate = (): ReactElement => {
                 fullName: `${data.firstName} ${data.lastName}`,
                 email: user.email || "",
                 photoURL: blankUser,
+                accountFinished: false,
                 phoneNumber: null,
                 userRole: UserRole.Student,
                 deviceToken,

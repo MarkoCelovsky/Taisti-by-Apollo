@@ -8,6 +8,9 @@ export enum ProfileScreens {
 }
 
 export enum Screens {
+    NestedSetup = "NestedSetup",
+    Setup = "Setup",
+
     NewEquation = "NewEquation",
     Authenticate = "Authenticate",
     NestedAuthenticate = "NestedAuthenticate",

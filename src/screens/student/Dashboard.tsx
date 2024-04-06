@@ -39,13 +39,13 @@ export const Dashboard = (): ReactElement => {
     const getNotificationCount = useCallback(async () => {
         let msgs = 0;
         const q = query(
-            notificationsCol(user?.groupId || ""),
+            notificationsCol("notis" || ""),
             where("receiverId", "array-contains", userId),
         );
         const querySnapshot = await getCountFromServer(q);
         msgs = querySnapshot.data().count;
         setMessagesQty(msgs);
-    }, [user, userId]);
+    }, [userId]);
 
     useEffect(() => {
         isFocused && getNotificationCount();

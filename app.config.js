@@ -22,6 +22,12 @@ module.exports = {
                         "The app accesses your photos to let you share them with your instructors.",
                 },
             ],
+            [
+                "expo-local-authentication",
+                {
+                    faceIDPermission: "Allow LunaLearn to use Face ID.",
+                },
+            ],
             ["expo-localization"],
             [
                 "expo-notifications",

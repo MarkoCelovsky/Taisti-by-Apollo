@@ -10,6 +10,7 @@ export type User = {
     phoneNumber: string | null;
     photoURL: string | null;
     groupId: string | null;
+    accountFinished: boolean;
     notificationPreferences: Array<NotificationTypes>;
     createdAt: Timestamp;
 };
