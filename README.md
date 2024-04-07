@@ -4,6 +4,9 @@
   </a>
 </p>
 
+[![All Contributors](https://img.shields.io/github/contributors/MarkoCelovsky/taisti-apollo?style=flat-square)](https://github.com/MarkoCelovsky/taisti-apollo/graphs/contributors)
+[![Activity](https://img.shields.io/github/commit-activity/m/MarkoCelovsky/taisti-apollo?style=flat-square)](https://github.com/MarkoCelovsky/taisti-apollo/pulse)
+
 Imagine a space where investing becomes as easy as stargazing. That's what Taisti offers. It's your cosmic companion, guiding you through the complexities of investing with personalized strategies and expert advice. Join us under the moon's gentle light and embark on your journey to financial enlightenment.
 
 ## Contributors
