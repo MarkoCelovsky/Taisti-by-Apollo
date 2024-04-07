@@ -130,13 +130,21 @@ const Card = ({ item }: { item: Stock }) => (
                 padding: 16,
             }}
         >
-            <View>
-                <CustomText category="h6" style={{ color: "#fff" }}>
-                    {item.symbol}
-                </CustomText>
-                <CustomText category="p2" style={{ color: "#888" }}>
-                    {item.companyName}
-                </CustomText>
+            <View className="mx-4 flex flex-row gap-4">
+                <Image
+                    style={{ height: 40, width: 40, maxWidth: 40 }}
+                    source={{ uri: item.img }}
+                    accessibilityIgnoresInvertColors
+                />
+                <View>
+                    <CustomText category="h6" style={{ color: "#fff" }}>
+                        {item.symbol}
+                    </CustomText>
+                    <CustomText category="p2" style={{ color: "#888" }}>
+                        {item.companyName.substring(0, 20)}{" "}
+                        {item.companyName.length > 20 ? "..." : ""}
+                    </CustomText>
+                </View>
             </View>
             <View>
                 <CustomText category="h6" style={{ color: "#fff" }}>
@@ -145,10 +153,9 @@ const Card = ({ item }: { item: Stock }) => (
                 <CustomText
                     category="p2"
                     style={{
-                        color: item.finalTotal && item.finalTotal > 0 ? "#008000" : "#ff0000",
+                        color: item.finalTotal && item.finalTotal > 0 ? "#ff00000" : "#008000",
                     }}
                 >
-                    {" "}
                     ({item.currentPrice > 0 ? "+" : ""}
                     {item.currentPrice.toFixed(2)}%)
                 </CustomText>

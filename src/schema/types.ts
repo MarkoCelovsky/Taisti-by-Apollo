@@ -30,17 +30,17 @@ export enum UserInterest {
 }
 
 export enum UserExperience {
-  Beginner = "Beginner",
-  Intermediate = "Intermediate",
-  Expert = "Expert",
+    Beginner = "Beginner",
+    Intermediate = "Intermediate",
+    Expert = "Expert",
 }
 
 export enum UserAreaOfInterest {
-  Stocks = "Stocks",
-  Bonds = "Bonds",
-  Cryptocurrencies = "Cryptocurrencies",
-  MutualFunds = "Mutual Funds/etfs",
-  Other = "Other",
+    Stocks = "Stocks",
+    Bonds = "Bonds",
+    Cryptocurrencies = "Cryptocurrencies",
+    MutualFunds = "Mutual Funds/etfs",
+    Other = "Other",
 }
 
 export enum UserTolerance {
@@ -69,6 +69,7 @@ type PriceChange = {
 export type Stock = {
     symbol: string;
     companyName: string;
+    img?: string;
     finalTotal?: number;
     currentPrice: number;
     userPreference?: UserPreference; // Optional: User preference category for the stock

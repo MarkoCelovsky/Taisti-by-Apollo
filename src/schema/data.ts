@@ -257,6 +257,7 @@ export const technologyStocks: Stock[] = [
     {
         symbol: "AAPL",
         companyName: "Apple Inc.",
+        img: "https://w7.pngwing.com/pngs/374/156/png-transparent-apple-macbook-pro-logo-apple-logo-white-logo-black.png",
         currentPrice: 189.2,
         priceChanges: [
             { date: 1680920000000, price: 190.1, change: -0.9, changePercent: -0.47 }, // 2024-04-04
