@@ -6,41 +6,75 @@ import {
     BottomSheetBackdropProps,
     BottomSheetModal,
 } from "@gorhom/bottom-sheet";
+import { addDoc } from "firebase/firestore";
 import { LoadingSpinner } from "components/UI/LoadingSpinner";
 import { useAuth } from "context/auth-context";
+import { stocksCol } from "utils/firebase.config";
 import { CustomText } from "components/UI/CustomElements";
 import { Image } from "expo-image";
 import { Stock } from "schema/types";
+import { BuyStock } from "components/modals/BuyStock";
 import { CustomInput } from "components/UI/CustomElements";
-import { GuideModal } from "components/modals/GuideModal";
+import { PortfolioModal } from "components/modals/PortfolioModal";
+import { Icon } from "@ui-kitten/components";
 
-const guides = [
+const portfolios = [
     {
         id: 1,
-        title: "Investing 101: Your Ultimate Beginner's Guide",
-        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec purus feugiat, molestie ipsum et, consequat nisl. Nulla facilisi. Nullam ac nunc sit amet elit ultricies posuere. Donec auctor, libero nec ultricies posuere, libero nunc ultrices odio, nec imperdiet nunc odio sit amet nunc. Nulla nec purus feugiat, molestie ipsum et, consequat nisl. Nulla facilisi. Nullam ac nunc sit amet elit ultricies posuere. Donec auctor, libero nec ultricies posuere, libero nunc ultrices odio, nec imperdiet nunc odio sit amet nunc. Nulla nec purus feugiat, molestie ipsum et, consequat nisl. Nulla facilisi. Nullam ac nunc sit amet elit ultricies posuere. Donec auctor, libero nec ultricies posuere, libero nunc ultrices odio, nec imperdiet nunc odio sit amet nunc. Nulla nec purus feugiat, molestie ipsum et, consequat nisl. Nulla facilisi. Nullam ac nunc sit amet elit ultricies posuere. Donec auctor, libero nec ultricies posuere, libero nunc ultrices odio, nec imperdiet nunc odio sit amet nunc. Nulla nec purus feugiat, molestie ipsum et, consequat nisl. Nulla facilisi. Nullam ac nunc sit amet elit ultricies posuere. Donec auctor, libero nec ultricies posuere, libero nunc ultrices odio, nec imperdiet nunc odio sit amet nunc. Nulla nec purus feugiat, molestie ipsum et, consequat nisl. Nulla facilisi. Nullam ac nunc sit amet elit ultricies posuere. Donec auctor, libero nec ultricies posuere, libero nunc ultrices odio, nec imperdiet nunc odio sit amet nunc. Nulla nec purus feugiat, molestie ipsum et, consequat nisl. Nulla facilisi. Nullam ac nunc sit amet elit ultricies posuere. Donec auctor, libero nec ultricies posuere, libero nunc ultrices odio, nec imperdiet nunc odio sit amet nunc. Nulla nec purus feugiat, molestie ipsum et",
-        img: "https://picsum.photos/300/140",
+        name: "John Doe",
+        totalProfitSinceLastWeek: -0.7,
+        stocks: [
+            {
+                symbol: "AAPL",
+                companyName: "Apple Inc.",
+                currentPrice: 150.0,
+                finalTotal: 0.0,
+            },
+            {
+                symbol: "GOOGL",
+                companyName: "Alphabet Inc.",
+                currentPrice: 2500.0,
+                finalTotal: 0.0,
+            },
+            {
+                symbol: "TSLA",
+                companyName: "Tesla Inc.",
+                currentPrice: 700.0,
+                finalTotal: 0.0,
+            },
+        ],
     },
     {
         id: 2,
-        title: "Demystifying Investments",
-        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec purus feugiat, molestie ipsum et, consequat nisl. Nulla facilisi. Nullam ac nunc sit amet elit ultricies posuere. Donec auctor, libero nec ultricies posuere, libero nunc ultrices odio, nec imperdiet nunc odio sit amet nunc. Nulla nec purus feugiat, molestie ipsum et, consequat nisl. Nulla facilisi. Nullam ac nunc sit amet elit ultricies posuere. Donec auctor, libero nec ultricies posuere, libero nunc ultrices odio, nec imperdiet nunc odio sit amet nunc. Nulla nec purus feugiat, molestie ipsum et, consequat nisl. Nulla facilisi. Nullam ac nunc sit amet elit ultricies posuere. Donec auctor, libero nec ultricies posuere, libero nunc ultrices odio, nec imperdiet nunc odio sit amet nunc. Nulla nec purus feugiat, molestie ipsum et, consequat nisl. Nulla facilisi. Nullam ac nunc sit amet elit ultricies posuere. Donec auctor, libero nec ultricies posuere, libero nunc ultrices odio, nec imperdiet nunc odio sit amet nunc. Nulla nec purus feugiat, molestie ipsum et, consequat nisl. Nulla facilisi. Nullam ac nunc sit amet elit ultricies posuere. Donec auctor, libero nec ultricies posuere, libero nunc ultrices odio, nec imperdiet nunc odio sit amet nunc. Nulla nec purus feugiat, molestie ipsum et, consequat nisl. Nulla facilisi. Nullam ac nunc sit amet elit ultricies posuere. Donec auctor, libero nec ultricies posuere, libero nunc ultrices odio, nec imperdiet nunc odio sit amet nunc. Nulla nec purus feugiat, molestie ipsum et, consequat nisl. Nulla facilisi. Nullam ac nunc sit amet elit ultricies posuere. Donec auctor, libero nec ultricies posuere, libero nunc ultrices odio, nec imperdiet nunc odio sit amet nunc. Nulla nec purus feugiat, molestie ipsum et",
-        img: "https://picsum.photos/300/140",
+        name: "John Doe",
+        totalProfitSinceLastWeek: 2.7,
+        stocks: [
+            {
+                symbol: "AAPL",
+                companyName: "Apple Inc.",
+                currentPrice: 150.0,
+                finalTotal: 0.0,
+            },
+            {
+                symbol: "GOOGL",
+                companyName: "Alphabet Inc.",
+                currentPrice: 2500.0,
+                finalTotal: 0.0,
+            },
+            {
+                symbol: "TSLA",
+                companyName: "Tesla Inc.",
+                currentPrice: 700.0,
+                finalTotal: 0.0,
+            },
+        ],
     },
 ];
 
 export const Community = (): ReactElement => {
     const bottomSheetModalRef = useRef<BottomSheetModal>(null);
     const { userId, user } = useAuth();
-    const [selectedGuide, setSelectedGuide] = useState<{
-        title: string;
-        text: string;
-        img: string;
-    }>({
-        title: "",
-        text: "",
-        img: "",
-    });
+    const [selectedPortfolio, setSelectedPortfolio] = useState<any | null>(null);
 
     const openModalHandler = useCallback(() => {
         bottomSheetModalRef.current?.present();
@@ -57,8 +91,8 @@ export const Community = (): ReactElement => {
         [],
     );
 
-    const openGuide = (guide: any) => {
-        setSelectedGuide(guide);
+    const openPortfolio = (portfolio: any) => {
+        setSelectedPortfolio(portfolio);
         openModalHandler();
     };
 
@@ -77,37 +111,29 @@ export const Community = (): ReactElement => {
                 <CustomInput placeholder="Search" className="w-2/3" />
             </View>
             <ScrollView contentContainerStyle={styles.contentContainer}>
-                <View style={styles.cardContainer}>
-                    {guides.map((item) => (
-                        <TouchableOpacity
-                            key={item.id}
-                            accessibilityRole="button"
-                            activeOpacity={0.5}
-                            accessibilityIgnoresInvertColors
-                            onPress={() => openGuide(item)}
-                        >
-                            <Card item={item} />
-                        </TouchableOpacity>
-                    ))}
-                </View>
+                {portfolios.map((item) => (
+                    <TouchableOpacity
+                        key={item.id}
+                        accessibilityRole="button"
+                        activeOpacity={0.5}
+                        accessibilityIgnoresInvertColors
+                        onPress={() => openPortfolio(item)}
+                    >
+                        <Card item={item} />
+                    </TouchableOpacity>
+                ))}
             </ScrollView>
             <BottomSheetModal
                 ref={bottomSheetModalRef}
                 index={0}
-                // enableDynamicSizing
-                snapPoints={["90%"]}
+                enableDynamicSizing
                 onDismiss={handleCloseModal}
                 backdropComponent={renderBackdrop}
                 backgroundStyle={{
                     backgroundColor: "#242728",
                 }}
             >
-                <GuideModal
-                    text={selectedGuide.text}
-                    title={selectedGuide.title}
-                    img={selectedGuide.img}
-                    handleCloseModal={handleCloseModal}
-                />
+                <PortfolioModal portfolio={selectedPortfolio} />
             </BottomSheetModal>
         </SafeAreaView>
     );
@@ -120,20 +146,50 @@ const Card = ({ item }: { item: any }) => (
             borderRadius: 8,
             marginVertical: 8,
             width: "90%",
+            justifyContent: "center",
         }}
         className="mx-auto my-2 flex-col justify-center"
     >
-        <View className="flex flex-col p-4">
-            <Image
-                style={{ height: 140, width: 300, borderRadius: 8 }}
-                source={{ uri: item.img }}
-                accessibilityIgnoresInvertColors
-            />
-            <View className="mt-2">
+        <View
+            style={{
+                flexDirection: "row",
+                justifyContent: "space-between",
+                padding: 16,
+            }}
+        >
+            <View className="flex w-full flex-row items-center justify-between">
                 <CustomText category="h6" style={{ color: "#fff" }}>
-                    {item.title}
+                    {item.name}
                 </CustomText>
+                <View
+                    style={{
+                        backgroundColor: "#4F5355",
+                        padding: 4,
+                        borderRadius: 4,
+                        width: 90,
+                    }}
+                >
+                    <CustomText category="p2" style={{ color: "#fff" }}>
+                        {item.totalProfitSinceLastWeek > 0
+                            ? `+${item.totalProfitSinceLastWeek}% since last week`
+                            : `${item.totalProfitSinceLastWeek}% since last week`}
+                    </CustomText>
+                </View>
             </View>
+            {/* <View>
+                <CustomText category="h6" style={{ color: "#fff" }}>
+                    {item.currentPrice.toFixed(2)}
+                </CustomText>
+                <CustomText
+                    category="p2"
+                    style={{
+                        color: item.finalTotal && item.finalTotal > 0 ? "#008000" : "#ff0000",
+                    }}
+                >
+                    ({item.currentPrice > 0 ? "+" : ""}
+                    {item.currentPrice.toFixed(2)}%)
+                </CustomText>
+            </View> */}
         </View>
     </View>
 );

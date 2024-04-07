@@ -13,6 +13,7 @@ import {
     NestedProfileScreens,
     NestedSetupScreens,
     NestedLearningScreens,
+    NestedCommunityScreens,
 } from "./CustomNavigation";
 import { LinearGradient } from "expo-linear-gradient";
 
@@ -199,8 +200,8 @@ export const BottomTabNavigation = (): ReactElement => {
                 }}
             />
             <Screen
-                name={Screens.Community}
-                component={NestedLearningScreens}
+                name={Screens.NestedCommunity}
+                component={NestedCommunityScreens}
                 options={{
                     tabBarIcon: ({ color, size }) =>
                         tabBarFontAwesomeComponent({
