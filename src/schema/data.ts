@@ -131,10 +131,10 @@ export const healthcareStocks: Stock[] = [
         currentPrice: 64.2,
         img: "https://s3-symbol-logo.tradingview.com/pfizer--600.png",
         priceChanges: [
-            { date: 1680920000000, price: 65.1, change: -0.9, changePercent: -1.39 }, // 2024-04-04
-            { date: 1680833600000, price: 65.75, change: -0.65, changePercent: -0.98 }, // 2024-04-03
+            { date: 1680920000000, price: 65.1, change: 0.9, changePercent: 1.39 }, // 2024-04-04
+            { date: 1680833600000, price: 65.75, change: 0.65, changePercent: 0.98 }, // 2024-04-03
             { date: 1680747200000, price: 66.05, change: 0.3, changePercent: 0.46 }, // 2024-04-02
-            { date: 1680660800000, price: 65.55, change: -0.5, changePercent: -0.76 }, // 2024-04-01
+            { date: 1680660800000, price: 65.55, change: 0.5, changePercent: 0.76 }, // 2024-04-01
             { date: 1679990400000, price: 66.75, change: 1.2, changePercent: 1.83 }, // 2024-03-31
         ],
     },
