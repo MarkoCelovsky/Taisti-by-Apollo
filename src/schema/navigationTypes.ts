@@ -20,9 +20,9 @@ export type RootStackNavigatorParamList = {
     Setup: undefined;
     Learning: undefined;
     NestedLearning: undefined;
-    AI: undefined;
-    NestedAI: undefined;
-    NestedAIScreens: undefined;
+    Taisti: undefined;
+    NestedTaisti: undefined;
+    NestedTaistiScreens: undefined;
     NestedSetup: undefined;
     Authenticate: undefined;
     FirstStepSetup: undefined;

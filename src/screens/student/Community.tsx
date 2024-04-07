@@ -6,17 +6,12 @@ import {
     BottomSheetBackdropProps,
     BottomSheetModal,
 } from "@gorhom/bottom-sheet";
-import { addDoc } from "firebase/firestore";
 import { LoadingSpinner } from "components/UI/LoadingSpinner";
 import { useAuth } from "context/auth-context";
-import { stocksCol } from "utils/firebase.config";
 import { CustomText } from "components/UI/CustomElements";
 import { Image } from "expo-image";
-import { Stock } from "schema/types";
-import { BuyStock } from "components/modals/BuyStock";
 import { CustomInput } from "components/UI/CustomElements";
 import { PortfolioModal } from "components/modals/PortfolioModal";
-import { Icon } from "@ui-kitten/components";
 import { Screens } from "screens/screen-names";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
@@ -50,8 +45,33 @@ const portfolios = [
     },
     {
         id: 2,
-        name: "John Doe",
+        name: "Will Smith",
         totalProfitSinceLastWeek: 2.7,
+        stocks: [
+            {
+                symbol: "AAPL",
+                companyName: "Apple Inc.",
+                currentPrice: 150.0,
+                finalTotal: 0.0,
+            },
+            {
+                symbol: "GOOGL",
+                companyName: "Alphabet Inc.",
+                currentPrice: 2500.0,
+                finalTotal: 0.0,
+            },
+            {
+                symbol: "TSLA",
+                companyName: "Tesla Inc.",
+                currentPrice: 700.0,
+                finalTotal: 0.0,
+            },
+        ],
+    },
+    {
+        id: 3,
+        name: "Peter Crouch",
+        totalProfitSinceLastWeek: 15.7,
         stocks: [
             {
                 symbol: "AAPL",

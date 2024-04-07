@@ -20,6 +20,13 @@ Thank you to the following contributors who have helped create and shape this pr
 
 And a special thanks goes to all the mentors as well!
 
+# App Gallery
+<img src="https://github.com/MarkoCelovsky/taisti-apollo/blob/main/assets/1.png" height="500px"> <img src="https://github.com/MarkoCelovsky/taisti-apollo/blob/main/assets/2.png" height="500px">
+<img src="https://github.com/MarkoCelovsky/taisti-apollo/blob/main/assets/3.png" height="500px">
+<img src="https://github.com/MarkoCelovsky/taisti-apollo/blob/main/assets/4.png" height="500px">
+<img src="https://github.com/MarkoCelovsky/taisti-apollo/blob/main/assets/5.png" height="500px">
+
+
 # Taisti Documentation
 
 ## Introduction
