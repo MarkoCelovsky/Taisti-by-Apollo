@@ -5,17 +5,11 @@ import { FlatList, StyleSheet, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
-import { UserPreference } from "schema/types";
+import { UserBudget, UserPreference } from "schema/types";
 
 const questions = [
     {
-        choices: [
-            UserPreference.Sports,
-            UserPreference.Technology,
-            UserPreference.Gastronomy,
-            UserPreference.Entertainment,
-            UserPreference.Healthcare,
-        ],
+        choices: [UserBudget.Low, UserBudget.Medium, UserBudget.High],
     },
 ];
 
@@ -23,12 +17,12 @@ export const FifthStepSetup = ({ route }: { route: any }): ReactElement => {
     const [selected, setSelected] = useState<UserPreference>();
     const { editUser } = useAuth();
     const navigation = useNavigation<any>();
-    const { selectedInterest, selectedExperience, selectedBudget, riskTolerance } = route.params;
+    const { selectedInterest, selectedExperience, selectedBudget } = route.params;
 
     const next = async () => {
         if (selected !== undefined) {
+            console.log("selected", selected, selectedInterest, selectedExperience, selectedBudget);
             await editUser({
-                riskTolerance,
                 selectedInterest,
                 selectedExperience,
                 selectedBudget,
@@ -45,7 +39,7 @@ export const FifthStepSetup = ({ route }: { route: any }): ReactElement => {
     return (
         <SafeAreaView style={styles.rootContainer}>
             <View style={styles.contentContainer}>
-                <CustomText style={styles.title}>{`What is your risk tolerance?`}</CustomText>
+                <CustomText style={styles.title}>{`What is your budget?`}</CustomText>
                 <CustomText style={styles.description}>
                     We need to know this for regulatory reasons. And also, we're curious!
                 </CustomText>

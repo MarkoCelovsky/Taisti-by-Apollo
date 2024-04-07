@@ -26,7 +26,6 @@ export const FourthStepSetup = ({ route }: { route: any }): ReactElement => {
 
     const next = async () => {
         if (selected !== undefined) {
-            
             navigation.navigate("FifthStepSetup", {
                 selectedInterest,
                 selectedExperience,
@@ -78,7 +77,7 @@ export const FourthStepSetup = ({ route }: { route: any }): ReactElement => {
                     Previous
                 </CustomButton>
                 <CustomButton onPress={next} status="info" style={styles.button}>
-                    Finish 
+                    Finish
                 </CustomButton>
             </View>
         </SafeAreaView>

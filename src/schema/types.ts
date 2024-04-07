@@ -59,6 +59,12 @@ export enum UserPreference {
     Technology = "Technology", // Add two more preferences here (e.g., 'Entertainment', 'Healthcare')
 }
 
+export enum UserBudget {
+    Low = "Low (0-100)€",
+    Medium = "Medium(100-500)€",
+    High = "High(500+)€",
+}
+
 type PriceChange = {
     date: number; // Date of the price change (e.g., YYYY-MM-DD)
     price: number; // Price on that date

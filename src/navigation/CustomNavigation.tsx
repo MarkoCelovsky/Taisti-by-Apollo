@@ -20,6 +20,7 @@ import { FirstStepSetup } from "screens/auth/FirstStepSetup";
 import { SecondStepSetup } from "screens/auth/SecondStepSetup";
 import { ThirdStepSetup } from "screens/auth/ThirdStepSetup";
 import { FourthStepSetup } from "screens/auth/FourthStepSetup";
+import { FifthStepSetup } from "screens/auth/FifthStepSetup";
 import { Community } from "screens/student/Community";
 import { Taisti } from "screens/student/AI";
 
@@ -76,6 +77,11 @@ export const NestedSetupScreens = () => {
             <Screen
                 name={Screens.FourthStepSetup}
                 component={FourthStepSetup}
+                options={{ headerShown: false }}
+            />
+            <Screen
+                name={Screens.FifthStepSetup}
+                component={FifthStepSetup}
                 options={{ headerShown: false }}
             />
             <Screen
