@@ -12,6 +12,7 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Feather } from "@expo/vector-icons";
+import { FontAwesome } from "@expo/vector-icons";
 import {
     BottomSheetBackdrop,
     BottomSheetBackdropProps,
@@ -228,6 +229,17 @@ export const Dashboard = (): ReactElement => {
                             .reduce((total, item) => total + item.amount * item.currentPrice, 0)
                             .toFixed(2)}
                     </CustomText>
+                    <View className="flex flex-row items-center rounded-md bg-blue-400 px-2 text-white">
+                        <FontAwesome
+                            name="caret-up"
+                            size={24}
+                            color="lime"
+                            style={{ marginRight: 10 }}
+                        />
+                        <CustomText className="text-white">
+                            {t("+ 0.5% since last week")}
+                        </CustomText>
+                    </View>
                 </View>
                 <View style={styles.lessonList}>
                     <CustomText category="h4" className="p-4 text-white">

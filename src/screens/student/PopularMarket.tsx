@@ -1,4 +1,4 @@
-import { ReactElement, useCallback, useMemo, useRef, useState } from "react";
+import { ReactElement, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { ScrollView, StyleSheet, View, TouchableOpacity } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import {
@@ -32,6 +32,7 @@ export const PopularMarket = (): ReactElement => {
     const bottomSheetModalRef = useRef<BottomSheetModal>(null);
     const { userId, user } = useAuth();
     const [selectedStock, setSelectedStock] = useState<Stock | null>(null);
+    const [stocks, setStocks] = useState<Stock[]>([]);
 
     const openModalHandler = useCallback(() => {
         bottomSheetModalRef.current?.present();
@@ -59,6 +60,14 @@ export const PopularMarket = (): ReactElement => {
         [],
     );
 
+    useEffect(() => {
+        setStocks(mergedStocks);
+        const filter = mergedStocks.filter((stock) =>
+            stock.companyName.toLowerCase().startsWith(query.toLowerCase()),
+        );
+        setStocks(filter);
+    }, [mergedStocks, query]);
+
     const { navigate } = useNavigation<NativeStackNavigationProp<RootStackNavigatorParamList>>();
 
     const buyStock = async (amount: number, stock: Stock) => {
@@ -74,11 +83,6 @@ export const PopularMarket = (): ReactElement => {
         setSelectedStock(stock);
         openModalHandler();
     };
-    const filteredStocks = useMemo(() => {
-        return mergedStocks.filter((stock) =>
-            stock.companyName.toLowerCase().includes(query.toLowerCase()),
-        );
-    }, [mergedStocks, query]);
 
     if (!userId || !user) {
         return <LoadingSpinner />;
@@ -105,7 +109,7 @@ export const PopularMarket = (): ReactElement => {
                 />
             </View>
             <ScrollView contentContainerStyle={styles.contentContainer}>
-                {filteredStocks.slice(5).map((item) => (
+                {stocks.map((item) => (
                     <TouchableOpacity
                         key={item.symbol}
                         accessibilityRole="button"
@@ -157,8 +161,13 @@ const Card = ({ item }: { item: Stock }) => (
         >
             <View className="mx-4 flex flex-row gap-4">
                 <Image
-                    style={{ height: 40, width: 40, maxWidth: 40 }}
-                    source={{ uri: item.img }}
+                    style={{
+                        height: 40,
+                        width: 40,
+                        maxWidth: 40,
+                        maxHeight: 40,
+                    }}
+                    source={{ uri: item.img || "" }}
                     accessibilityIgnoresInvertColors
                 />
                 <View>
