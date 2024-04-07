@@ -19,6 +19,10 @@ export type RootStackNavigatorParamList = {
     NestedLearningScreens: undefined;
     Setup: undefined;
     Learning: undefined;
+    NestedLearning: undefined;
+    AI: undefined;
+    NestedAI: undefined;
+    NestedAIScreens: undefined;
     NestedSetup: undefined;
     Authenticate: undefined;
     FirstStepSetup: undefined;
@@ -33,7 +37,6 @@ export type RootStackNavigatorParamList = {
     PasswordReset: undefined;
     Manage: undefined;
     NestedAdminDashboard: undefined;
-    NestedLearning: undefined;
     AdminDashboard: undefined;
     Notifications: undefined;
     PopularMarket: undefined;
@@ -41,7 +44,6 @@ export type RootStackNavigatorParamList = {
     NotificationPreferences: undefined;
     NewEquation: undefined;
     MyEquations: undefined;
-    Learning: undefined;
 
     Chat: { user: User | null; chatId: string; userIds: string[] };
     ChatDetails: { chatId: string };

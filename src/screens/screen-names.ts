@@ -9,7 +9,6 @@ export enum ProfileScreens {
 
 export enum Screens {
     NestedSetup = "NestedSetup",
-    Learning = "Learning",
     Auth = "Auth",
     Community = "Community",
     FirstStepSetup = "FirstStepSetup",
@@ -20,6 +19,8 @@ export enum Screens {
     NewEquation = "NewEquation",
     Authenticate = "Authenticate",
     Learning = "Learning",
+    AI = "AI",
+    NestedAI = "NestedAI",
     NestedAuthenticate = "NestedAuthenticate",
     NestedDashboard = "NestedDashboard",
     NestedCommunity = "NestedCommunity",

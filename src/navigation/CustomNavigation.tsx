@@ -23,8 +23,8 @@ import { FirstStepSetup } from "screens/auth/FirstStepSetup";
 import { SecondStepSetup } from "screens/auth/SecondStepSetup";
 import { ThirdStepSetup } from "screens/auth/ThirdStepSetup";
 import { FourthStepSetup } from "screens/auth/FourthStepSetup";
-import { Learning } from "screens/Learning";
 import { Community } from "screens/student/Community";
+import { AI } from "screens/student/AI";
 
 const { Navigator, Screen } = createNativeStackNavigator<RootStackNavigatorParamList>();
 
@@ -206,6 +206,29 @@ export const NestedLearningScreens = () => {
             <Screen
                 name={Screens.Learning}
                 component={Learning}
+                options={{
+                    headerShown: false,
+                }}
+            />
+        </Navigator>
+    );
+};
+
+export const NestedAIScreens = () => {
+    return (
+        <Navigator
+            screenOptions={{
+                headerBackTitleVisible: false,
+                animation: "simple_push",
+                gestureEnabled: true,
+                gestureDirection: "horizontal",
+                headerShadowVisible: false,
+                headerTitleAlign: "center",
+            }}
+        >
+            <Screen
+                name={Screens.AI}
+                component={AI}
                 options={{
                     headerShown: false,
                 }}

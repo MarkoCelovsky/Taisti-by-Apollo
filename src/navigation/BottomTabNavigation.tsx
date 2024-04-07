@@ -11,6 +11,7 @@ import {
     NestedConversationsScreens,
     NestedDashboardScreens,
     NestedProfileScreens,
+    NestedAIScreens,
     NestedSetupScreens,
     NestedLearningScreens,
     NestedCommunityScreens,
@@ -169,8 +170,8 @@ export const BottomTabNavigation = (): ReactElement => {
                 }}
             />
             <Screen
-                name={Screens.NestedProfile}
-                component={NestedProfileScreens}
+                name={Screens.NestedAI}
+                component={NestedAIScreens}
                 options={{
                     tabBarIcon: ({ color, size }) =>
                         tabBarFontAwesomeComponent(
