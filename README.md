@@ -49,7 +49,7 @@ To start using Taisti, follow these steps:
 
 4. **Get Expo Go**: Jump in to the store on your phone and get this free awesome tool
    to get your app up and running in minutes.
-5. **Run the App**: Use `npm install` and then `npm start` to launch the Taisti app on your emulator or physical device.
+5. **Run the App**: Use `npm start` to launch the Taisti app on your emulator or physical device.
 
 ## Contributing
 
