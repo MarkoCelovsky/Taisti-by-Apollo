@@ -5,6 +5,7 @@ export const sportsStocks: Stock[] = [
     {
         symbol: "NIKE",
         companyName: "Nike, Inc.",
+        img: "https://s3-symbol-logo.tradingview.com/nike--600.png",
         currentPrice: 123.45,
         priceChanges: [
             { date: 1680920000000, price: 125.1, change: -1.65, changePercent: -1.32 }, // 2024-04-04
@@ -18,6 +19,7 @@ export const sportsStocks: Stock[] = [
         symbol: "ADIDAS",
         companyName: "Adidas AG",
         currentPrice: 95.67,
+        img: "https://s3-symbol-logo.tradingview.com/adidas--600.png",
         priceChanges: [
             { date: 1680920000000, price: 97.2, change: -1.53, changePercent: -1.57 },
             { date: 1680833600000, price: 98.75, change: -0.4, changePercent: -0.4 },
@@ -30,6 +32,7 @@ export const sportsStocks: Stock[] = [
         symbol: "PUMA",
         companyName: "Puma SE",
         currentPrice: 78.32,
+        img: "https://s3-symbol-logo.tradingview.com/puma--600.png",
         priceChanges: [
             { date: 1680920000000, price: 79.9, change: -1.58, changePercent: -1.98 },
             { date: 1680833600000, price: 80.5, change: -0.6, changePercent: -0.74 },
@@ -42,24 +45,13 @@ export const sportsStocks: Stock[] = [
         symbol: "UNDERARMOUR",
         companyName: "Under Armour, Inc.",
         currentPrice: 34.89,
+        img: "https://s3-symbol-logo.tradingview.com/under-armour--600.png",
         priceChanges: [
             { date: 1680920000000, price: 35.5, change: -0.61, changePercent: -1.72 },
             { date: 1680833600000, price: 36.1, change: -0.5, changePercent: -1.37 },
             { date: 1680747200000, price: 36.6, change: 0.5, changePercent: 1.39 },
             { date: 1680660800000, price: 36.1, change: -0.5, changePercent: -1.37 },
             { date: 1679990400000, price: 36.6, change: 1.1, changePercent: 3.09 },
-        ],
-    },
-    {
-        symbol: "REEBOK",
-        companyName: "Reebok International Ltd.",
-        currentPrice: 45.2,
-        priceChanges: [
-            { date: 1680920000000, price: 46.8, change: -1.6, changePercent: -3.42 },
-            { date: 1680833600000, price: 47.4, change: -0.6, changePercent: -1.25 },
-            { date: 1680747200000, price: 47.8, change: 0.4, changePercent: 0.84 },
-            { date: 1680660800000, price: 47.1, change: -0.6, changePercent: -1.26 },
-            { date: 1679990400000, price: 48.1, change: 1.0, changePercent: 2.12 },
         ],
     },
 ];
@@ -333,5 +325,33 @@ export const technologyStocks: Stock[] = [
             { date: 1680660800000, price: 3281.45, change: -1.1, changePercent: -0.03 },
             { date: 1679990400000, price: 3282.55, change: 1.1, changePercent: 0.03 },
         ],
+    },
+];
+
+export const chatbot = [
+    {
+        question: "What is the best way to save money for retirement?",
+        response:
+            "There are several options for saving for retirement, depending on your financial situation and goals. One popular option is to contribute to a retirement account such as a 401(k) or an IRA. These accounts offer tax advantages and can help your savings grow over time. Another option is to invest in a diversified portfolio of stocks, bonds, and other assets. It's essential to start saving early and regularly contribute to your retirement fund to reach your goals.",
+    },
+    {
+        question: "Should I invest in real estate?",
+        response:
+            "Investing in real estate can be a good way to build wealth over time, but it's essential to consider the risks and rewards. Real estate can provide rental income and potential appreciation in property value. However, it also requires significant upfront capital, ongoing maintenance costs, and can be subject to market fluctuations. Before investing in real estate, it's essential to research the local market, assess your financial situation, and consider consulting with a financial advisor.",
+    },
+    {
+        question: "What are the advantages of investing in index funds?",
+        response:
+            "Index funds are a popular investment option for many investors due to their low fees, diversification, and long-term performance. These funds track a specific market index, such as the S&P 500, and aim to replicate its performance. By investing in an index fund, you gain exposure to a broad range of companies and industries, reducing the risk of individual stock picking. Additionally, index funds typically have lower management fees compared to actively managed funds, allowing you to keep more of your investment returns.",
+    },
+    {
+        question: "How can I protect my investments during a market downturn?",
+        response:
+            "Market downturns are a natural part of investing, but there are steps you can take to protect your investments during these periods. One strategy is to maintain a diversified portfolio across different asset classes, such as stocks, bonds, and cash equivalents. Diversification can help reduce the impact of market volatility on your overall portfolio. Additionally, consider maintaining a long-term investment perspective and avoid making impulsive decisions based on short-term market fluctuations. Finally, having an emergency fund can provide a financial buffer during challenging times and help you avoid selling investments at unfavorable prices.",
+    },
+    {
+        question: "Is it a good time to buy cryptocurrency?",
+        response:
+            "Cryptocurrency investments can be highly volatile and speculative, making them unsuitable for all investors. While some people have experienced significant gains from investing in cryptocurrencies like Bitcoin, it's essential to recognize the risks involved. Cryptocurrency prices can be influenced by factors such as market sentiment, regulatory changes, and technological developments. Before investing in cryptocurrency, it's crucial to conduct thorough research, understand the technology behind it, and only invest what you can afford to lose. Consider consulting with a financial advisor to assess whether cryptocurrency aligns with your investment goals and risk tolerance.",
     },
 ];

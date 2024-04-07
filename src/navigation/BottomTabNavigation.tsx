@@ -10,7 +10,7 @@ import {
     NestedAuthScreens,
     NestedConversationsScreens,
     NestedDashboardScreens,
-    NestedAIScreens,
+    NestedTaistiScreens,
     NestedSetupScreens,
     NestedLearningScreens,
     NestedCommunityScreens,
@@ -168,8 +168,8 @@ export const BottomTabNavigation = (): ReactElement => {
                 }}
             />
             <Screen
-                name={Screens.NestedAI}
-                component={NestedAIScreens}
+                name={"TaistiD"}
+                component={NestedTaistiScreens}
                 options={{
                     tabBarIcon: ({ color, size }) =>
                         tabBarFontAwesomeComponent(
@@ -180,7 +180,7 @@ export const BottomTabNavigation = (): ReactElement => {
                             },
                             true,
                         ),
-                    title: `${t("AI")}`,
+                    title: `${t("Taisti")}`,
                     headerShown: false,
                 }}
             />

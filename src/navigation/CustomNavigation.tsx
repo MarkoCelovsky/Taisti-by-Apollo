@@ -11,20 +11,17 @@ import { PopularMarket } from "screens/student/PopularMarket";
 import { EditProfile } from "screens/shared/EditProfile";
 import { LanguagePreferences } from "screens/shared/LanguagePreferences";
 import { NotificationPreferences } from "screens/shared/NotificationPreferences";
-import { Notifications } from "screens/shared/Notifications";
 import { Profile } from "screens/shared/Profile";
 import { TempChat } from "screens/shared/TempChat";
 import { Dashboard } from "screens/student/Dashboard";
 import { Learning } from "screens/student/Learning";
 import { RootStackNavigatorParamList } from "schema/navigationTypes";
-import { MyEquations } from "screens/student/MyEquations";
-import { NewEquation } from "screens/student/NewEquation";
 import { FirstStepSetup } from "screens/auth/FirstStepSetup";
 import { SecondStepSetup } from "screens/auth/SecondStepSetup";
 import { ThirdStepSetup } from "screens/auth/ThirdStepSetup";
 import { FourthStepSetup } from "screens/auth/FourthStepSetup";
 import { Community } from "screens/student/Community";
-import { AI } from "screens/student/AI";
+import { Taisti } from "screens/student/AI";
 
 const { Navigator, Screen } = createNativeStackNavigator<RootStackNavigatorParamList>();
 
@@ -238,7 +235,7 @@ export const NestedLearningScreens = () => {
     );
 };
 
-export const NestedAIScreens = () => {
+export const NestedTaistiScreens = () => {
     return (
         <Navigator
             screenOptions={{
@@ -251,8 +248,8 @@ export const NestedAIScreens = () => {
             }}
         >
             <Screen
-                name={Screens.AI}
-                component={AI}
+                name="Taisti"
+                component={Taisti}
                 options={{
                     headerShown: false,
                 }}
