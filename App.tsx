@@ -5,7 +5,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import * as eva from "@eva-design/eva";
 import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import { DefaultTheme, NavigationContainer } from "@react-navigation/native";
-import { ApplicationProvider } from "@ui-kitten/components";
+import { ApplicationProvider, IconRegistry } from "@ui-kitten/components";
 import { useFonts } from "expo-font";
 import { StatusBar } from "expo-status-bar";
 import { default as theme } from "styles/mathify-theme.json";

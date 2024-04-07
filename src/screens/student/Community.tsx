@@ -21,7 +21,7 @@ import { Screens } from "screens/screen-names";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackNavigatorParamList } from "schema/navigationTypes";
-
+import { FontAwesome } from "@expo/vector-icons";
 const portfolios = [
     {
         id: 1,
@@ -176,30 +176,31 @@ const Card = ({ item }: { item: any }) => (
                         backgroundColor: "#4F5355",
                         padding: 4,
                         borderRadius: 4,
-                        width: 90,
                     }}
+                    className="flex flex-row items-center px-4"
                 >
+                    {item.totalProfitSinceLastWeek && item.totalProfitSinceLastWeek > 0 ? (
+                        <FontAwesome
+                            name="caret-up"
+                            size={24}
+                            color="lime"
+                            style={{ marginRight: 10 }}
+                        />
+                    ) : (
+                        <FontAwesome
+                            name="caret-down"
+                            size={24}
+                            color="red"
+                            style={{ marginRight: 10 }}
+                        />
+                    )}
                     <CustomText category="p2" style={{ color: "#fff" }}>
                         {item.totalProfitSinceLastWeek > 0
-                            ? `+${item.totalProfitSinceLastWeek}% since last week`
-                            : `${item.totalProfitSinceLastWeek}% since last week`}
+                            ? `+${item.totalProfitSinceLastWeek}% since \n last week`
+                            : `${item.totalProfitSinceLastWeek}% since \n last week`}
                     </CustomText>
                 </View>
             </View>
-            {/* <View>
-                <CustomText category="h6" style={{ color: "#fff" }}>
-                    {item.currentPrice.toFixed(2)}
-                </CustomText>
-                <CustomText
-                    category="p2"
-                    style={{
-                        color: item.finalTotal && item.finalTotal > 0 ? "#008000" : "#ff0000",
-                    }}
-                >
-                    ({item.currentPrice > 0 ? "+" : ""}
-                    {item.currentPrice.toFixed(2)}%)
-                </CustomText>
-            </View> */}
         </View>
     </View>
 );

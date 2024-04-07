@@ -60,7 +60,7 @@ export const PortfolioModal = ({ portfolio }: Props): ReactElement => {
 };
 
 const styles = StyleSheet.create({
-    modal: { padding: 16, paddingBottom: 32, height: "100%" },
+    modal: { padding: 16, paddingBottom: 32, height: "80%" },
     rootContainer: { padding: 16, height: 400 },
     ctr: { marginVertical: 12, gap: 2 },
 });

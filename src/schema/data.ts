@@ -69,6 +69,7 @@ export const gastronomyStocks: Stock[] = [
         symbol: "MCD",
         companyName: "McDonald's Corporation",
         currentPrice: 234.56,
+        img: "https://s3-symbol-logo.tradingview.com/mcdonalds--600.png",
         priceChanges: [
             { date: 1680920000000, price: 235.1, change: -0.54, changePercent: -0.23 }, // 2024-04-04
             { date: 1680833600000, price: 236.75, change: -0.3, changePercent: -0.13 }, // 2024-04-03
@@ -80,6 +81,7 @@ export const gastronomyStocks: Stock[] = [
     {
         symbol: "SBUX",
         companyName: "Starbucks Corporation",
+        img: "https://s3-symbol-logo.tradingview.com/starbucks--600.png",
         currentPrice: 125.67,
         priceChanges: [
             { date: 1680920000000, price: 124.1, change: -1.57, changePercent: -1.26 },
@@ -93,6 +95,7 @@ export const gastronomyStocks: Stock[] = [
         symbol: "YUM",
         companyName: "Yum! Brands, Inc.",
         currentPrice: 178.32,
+        img: "https://s3-symbol-logo.tradingview.com/yum-brands--600.png",
         priceChanges: [
             { date: 1680920000000, price: 179.9, change: -1.58, changePercent: -0.88 },
             { date: 1680833600000, price: 180.5, change: -0.6, changePercent: -0.33 },
@@ -105,6 +108,7 @@ export const gastronomyStocks: Stock[] = [
         symbol: "DPZ",
         companyName: "Domino's Pizza, Inc.",
         currentPrice: 410.45,
+        img: "https://s3-symbol-logo.tradingview.com/dominos-pizza--600.png",
         priceChanges: [
             { date: 1680920000000, price: 415.8, change: -5.35, changePercent: -1.29 },
             { date: 1680833600000, price: 420.75, change: -1.8, changePercent: -0.43 },
@@ -117,6 +121,7 @@ export const gastronomyStocks: Stock[] = [
         symbol: "CMG",
         companyName: "Chipotle Mexican Grill, Inc.",
         currentPrice: 1365.2,
+        img: "https://s3-symbol-logo.tradingview.com/chipotle-mexican-grill--600.png",
         priceChanges: [
             { date: 1680920000000, price: 1375.8, change: -10.6, changePercent: -0.77 },
             { date: 1680833600000, price: 1380.75, change: -5.95, changePercent: -0.43 },
@@ -132,6 +137,7 @@ export const healthcareStocks: Stock[] = [
         symbol: "PFE",
         companyName: "Pfizer Inc.",
         currentPrice: 64.2,
+        img: "https://s3-symbol-logo.tradingview.com/pfizer--600.png",
         priceChanges: [
             { date: 1680920000000, price: 65.1, change: -0.9, changePercent: -1.39 }, // 2024-04-04
             { date: 1680833600000, price: 65.75, change: -0.65, changePercent: -0.98 }, // 2024-04-03
@@ -144,6 +150,7 @@ export const healthcareStocks: Stock[] = [
         symbol: "JNJ",
         companyName: "Johnson & Johnson",
         currentPrice: 152.67,
+        img: "https://s3-symbol-logo.tradingview.com/johnson-and-johnson--600.png",
         priceChanges: [
             { date: 1680920000000, price: 151.1, change: -1.57, changePercent: -1.03 },
             { date: 1680833600000, price: 153.75, change: -0.3, changePercent: -0.2 },
@@ -156,6 +163,7 @@ export const healthcareStocks: Stock[] = [
         symbol: "GILD",
         companyName: "Gilead Sciences, Inc.",
         currentPrice: 82.32,
+        img: "https://s3-symbol-logo.tradingview.com/gilead--600.png",
         priceChanges: [
             { date: 1680920000000, price: 83.9, change: -1.58, changePercent: -1.89 },
             { date: 1680833600000, price: 84.5, change: -0.6, changePercent: -0.71 },
@@ -168,6 +176,7 @@ export const healthcareStocks: Stock[] = [
         symbol: "MRK",
         companyName: "Merck & Co., Inc.",
         currentPrice: 76.45,
+        img: "https://s3-symbol-logo.tradingview.com/merck-and-co--600.png",
         priceChanges: [
             { date: 1680920000000, price: 77.8, change: -1.35, changePercent: -1.73 },
             { date: 1680833600000, price: 78.75, change: -0.95, changePercent: -1.19 },
@@ -180,6 +189,7 @@ export const healthcareStocks: Stock[] = [
         symbol: "UNH",
         companyName: "UnitedHealth Group Incorporated",
         currentPrice: 345.2,
+        img: "https://s3-symbol-logo.tradingview.com/unitedhealth--600.png",
         priceChanges: [
             { date: 1680920000000, price: 347.8, change: -2.6, changePercent: -0.75 },
             { date: 1680833600000, price: 350.75, change: -3.95, changePercent: -1.11 },
@@ -195,6 +205,7 @@ export const entertainmentStocks: Stock[] = [
         symbol: "DIS",
         companyName: "The Walt Disney Company",
         currentPrice: 150.2,
+        img: "https://s3-symbol-logo.tradingview.com/walt-disney--600.png",
         priceChanges: [
             { date: 1680920000000, price: 151.1, change: -0.9, changePercent: -0.6 }, // 2024-04-04
             { date: 1680833600000, price: 152.75, change: -0.65, changePercent: -0.42 }, // 2024-04-03
@@ -207,6 +218,7 @@ export const entertainmentStocks: Stock[] = [
         symbol: "NFLX",
         companyName: "Netflix, Inc.",
         currentPrice: 485.67,
+        img: "https://s3-symbol-logo.tradingview.com/netflix--600.png",
         priceChanges: [
             { date: 1680920000000, price: 484.1, change: -1.57, changePercent: -0.32 },
             { date: 1680833600000, price: 486.75, change: -0.3, changePercent: -0.06 },
@@ -219,6 +231,7 @@ export const entertainmentStocks: Stock[] = [
         symbol: "CMCSA",
         companyName: "Comcast Corporation",
         currentPrice: 62.32,
+        img: "https://s3-symbol-logo.tradingview.com/comcast--600.png",
         priceChanges: [
             { date: 1680920000000, price: 63.9, change: -1.58, changePercent: -2.48 },
             { date: 1680833600000, price: 64.5, change: -0.6, changePercent: -0.92 },
@@ -231,6 +244,7 @@ export const entertainmentStocks: Stock[] = [
         symbol: "DISCA",
         companyName: "Discovery, Inc.",
         currentPrice: 45.45,
+        img: "https://s3-symbol-logo.tradingview.com/discovery-ltd--600.png",
         priceChanges: [
             { date: 1680920000000, price: 44.8, change: -0.65, changePercent: -1.44 },
             { date: 1680833600000, price: 45.75, change: -1.3, changePercent: -2.77 },
@@ -243,6 +257,7 @@ export const entertainmentStocks: Stock[] = [
         symbol: "LUMN",
         companyName: "Lumen Technologies, Inc.",
         currentPrice: 30.2,
+        img: "https://s3-symbol-logo.tradingview.com/lumen--600.png",
         priceChanges: [
             { date: 1680920000000, price: 31.1, change: -0.9, changePercent: -2.9 },
             { date: 1680833600000, price: 31.75, change: -0.65, changePercent: -2.0 },
@@ -257,7 +272,7 @@ export const technologyStocks: Stock[] = [
     {
         symbol: "AAPL",
         companyName: "Apple Inc.",
-        img: "https://w7.pngwing.com/pngs/374/156/png-transparent-apple-macbook-pro-logo-apple-logo-white-logo-black.png",
+        img: "https://i.pngimg.me/thumb/f/720/compngwingygchm.jpg",
         currentPrice: 189.2,
         priceChanges: [
             { date: 1680920000000, price: 190.1, change: -0.9, changePercent: -0.47 }, // 2024-04-04
@@ -271,6 +286,7 @@ export const technologyStocks: Stock[] = [
         symbol: "MSFT",
         companyName: "Microsoft Corporation",
         currentPrice: 245.67,
+        img: "https://s3-symbol-logo.tradingview.com/microsoft--600.png",
         priceChanges: [
             { date: 1680920000000, price: 244.1, change: -1.57, changePercent: -0.64 },
             { date: 1680833600000, price: 246.75, change: -0.3, changePercent: -0.12 },
@@ -283,6 +299,7 @@ export const technologyStocks: Stock[] = [
         symbol: "GOOGL",
         companyName: "Alphabet Inc. (Class A)",
         currentPrice: 3010.32,
+        img: "https://s3-symbol-logo.tradingview.com/alphabet--600.png",
         priceChanges: [
             { date: 1680920000000, price: 3011.9, change: -1.58, changePercent: -0.05 },
             { date: 1680833600000, price: 3012.5, change: -0.6, changePercent: -0.02 },
@@ -294,6 +311,7 @@ export const technologyStocks: Stock[] = [
     {
         symbol: "TSLA",
         companyName: "Tesla, Inc.",
+        img: "https://s3-symbol-logo.tradingview.com/tesla--600.png",
         currentPrice: 865.45,
         priceChanges: [
             { date: 1680920000000, price: 860.8, change: -4.65, changePercent: -0.54 },
@@ -306,6 +324,7 @@ export const technologyStocks: Stock[] = [
     {
         symbol: "AMZN",
         companyName: "Amazon.com, Inc.",
+        img: "https://static.stocktitan.net/company-logo/amzn.png",
         currentPrice: 3275.2,
         priceChanges: [
             { date: 1680920000000, price: 3280.8, change: -5.6, changePercent: -0.17 },
