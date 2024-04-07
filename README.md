@@ -45,7 +45,7 @@ To start using Taisti, follow these steps:
 
 1. **Clone the Repository**: Clone the Taisti repository from GitHub to your local machine.
 2. **Install Dependencies**: Navigate to the project directory and run `npm install` to install the necessary dependencies.
-3. **Set Up Firebase**: Create a Firebase project and configure the necessary Firebase services such as Authentication and Realtime Database. Update the Firebase configuration in the Taisti app.
+3. **Set Up Firebase**: Create a Firebase project and configure the necessary Firebase services such as Authentication and Firestore . Update the Firebase configuration in the Taisti app.
 
 4. **Get Expo Go**: Jump in to the store on your phone and get this free awesome tool
    to get your app up and running in minutes.
