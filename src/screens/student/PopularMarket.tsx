@@ -1,4 +1,4 @@
-import { ReactElement, useCallback, useRef, useState } from "react";
+import { ReactElement, useCallback, useMemo, useRef, useState } from "react";
 import { ScrollView, StyleSheet, View, TouchableOpacity } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import {
@@ -24,6 +24,7 @@ import { BuyStock } from "components/modals/BuyStock";
 import { CustomInput } from "components/UI/CustomElements";
 
 export const PopularMarket = (): ReactElement => {
+    const [query, setQuery] = useState("");
     const bottomSheetModalRef = useRef<BottomSheetModal>(null);
     const { userId, user } = useAuth();
     const [selectedStock, setSelectedStock] = useState<Stock | null>(null);
@@ -43,13 +44,16 @@ export const PopularMarket = (): ReactElement => {
         [],
     );
 
-    const mergedStocks = [
-        ...sportsStocks,
-        ...technologyStocks,
-        ...gastronomyStocks,
-        ...entertainmentStocks,
-        ...healthcareStocks,
-    ];
+    const mergedStocks = useMemo(
+        () => [
+            ...sportsStocks,
+            ...technologyStocks,
+            ...gastronomyStocks,
+            ...entertainmentStocks,
+            ...healthcareStocks,
+        ],
+        [],
+    );
 
     const buyStock = async (amount: number, stock: Stock) => {
         try {
@@ -64,6 +68,11 @@ export const PopularMarket = (): ReactElement => {
         setSelectedStock(stock);
         openModalHandler();
     };
+    const filteredStocks = useMemo(() => {
+        return mergedStocks.filter((stock) =>
+            stock.companyName.toLowerCase().includes(query.toLowerCase()),
+        );
+    }, [mergedStocks, query]);
 
     if (!userId || !user) {
         return <LoadingSpinner />;
@@ -77,13 +86,19 @@ export const PopularMarket = (): ReactElement => {
                     source={{ uri: user?.photoURL || "" }}
                     accessibilityIgnoresInvertColors
                 />
-                <CustomInput placeholder="Search" className="w-2/3" />
+                <CustomInput
+                    placeholder="Search"
+                    className="w-2/3"
+                    value={query}
+                    onChangeText={(text) => setQuery(text)}
+                />
             </View>
             <ScrollView contentContainerStyle={styles.contentContainer}>
-                {mergedStocks.slice(5).map((item) => (
+                {filteredStocks.slice(5).map((item) => (
                     <TouchableOpacity
                         key={item.symbol}
                         accessibilityRole="button"
+                        key={item.companyName}
                         activeOpacity={0.5}
                         accessibilityIgnoresInvertColors
                         onPress={() => openStock(item)}
@@ -146,6 +161,7 @@ const Card = ({ item }: { item: Stock }) => (
                     </CustomText>
                 </View>
             </View>
+
             <View>
                 <CustomText category="h6" style={{ color: "#fff" }}>
                     {item.currentPrice.toFixed(2)}
@@ -157,7 +173,7 @@ const Card = ({ item }: { item: Stock }) => (
                     }}
                 >
                     ({item.currentPrice > 0 ? "+" : ""}
-                    {item.currentPrice.toFixed(2)}%)
+                    {(item.currentPrice / 7.5).toFixed(2)}%)
                 </CustomText>
             </View>
         </View>
@@ -180,5 +196,6 @@ const styles = StyleSheet.create({
     contentContainer: {
         flexGrow: 1,
         paddingTop: 8,
+        paddingBottom: 60,
     },
 });

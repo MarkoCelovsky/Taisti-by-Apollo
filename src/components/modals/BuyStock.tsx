@@ -28,7 +28,7 @@ export const BuyStock = ({ handleCloseModal, stock, buyHandler }: Props): ReactE
         <BottomSheetView style={styles.modal}>
             <View>
                 <CustomText category="h5" className="text-center text-white">
-                    {t(`Stock price changes for`).toString()} {stock.companyName.toUpperCase()}
+                    {t("Stock price changes for").toString()} {stock.companyName.toUpperCase()}
                 </CustomText>
                 <LineChart
                     data={{
@@ -69,7 +69,9 @@ export const BuyStock = ({ handleCloseModal, stock, buyHandler }: Props): ReactE
                 />
             </View>
             <View>
-                <CustomText className="text-white">{t(`Stocks amount`).toString()}: {amount.toFixed(0)}</CustomText>
+                <CustomText className="text-white">
+                    {t("Stocks amount").toString()}: {amount.toFixed(0)}
+                </CustomText>
                 <Slider
                     style={{ width: "100%", height: 40 }}
                     minimumValue={0}
@@ -81,11 +83,11 @@ export const BuyStock = ({ handleCloseModal, stock, buyHandler }: Props): ReactE
             </View>
             <View>
                 <CustomText category="h3" className="my-2 text-white">
-                    {t(`Final price`).toString()}: ${(amount * stock.currentPrice).toFixed(2)}
+                    {t("Final price").toString()}: ${(amount * stock.currentPrice).toFixed(2)}
                 </CustomText>
             </View>
             <CustomButton status="info" onPress={() => buyHandler(+amount.toFixed(0), stock)}>
-                {t(`Buy stock`).toString()}
+                {t("Buy stock").toString()}
             </CustomButton>
         </BottomSheetView>
     );

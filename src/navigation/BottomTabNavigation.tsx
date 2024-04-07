@@ -165,7 +165,7 @@ export const BottomTabNavigation = (): ReactElement => {
                             name: "bar-chart",
                         }),
                     headerShown: false,
-                    title: `${t("Messages")}`,
+                    title: `${t("Market")}`,
                 }}
             />
             <Screen

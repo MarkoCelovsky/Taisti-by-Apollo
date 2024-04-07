@@ -23,6 +23,7 @@ import { FirstStepSetup } from "screens/auth/FirstStepSetup";
 import { SecondStepSetup } from "screens/auth/SecondStepSetup";
 import { ThirdStepSetup } from "screens/auth/ThirdStepSetup";
 import { FourthStepSetup } from "screens/auth/FourthStepSetup";
+import { Learning } from "screens/Learning";
 import { Community } from "screens/student/Community";
 
 const { Navigator, Screen } = createNativeStackNavigator<RootStackNavigatorParamList>();

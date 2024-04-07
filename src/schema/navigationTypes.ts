@@ -18,6 +18,7 @@ export type RootStackNavigatorParamList = {
     NestedCommunityScreens: undefined;
     NestedLearningScreens: undefined;
     Setup: undefined;
+    Learning: undefined;
     NestedSetup: undefined;
     Authenticate: undefined;
     FirstStepSetup: undefined;

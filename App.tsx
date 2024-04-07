@@ -28,7 +28,7 @@ const App = (): ReactElement => {
         ...DefaultTheme,
         colors: {
             ...DefaultTheme.colors,
-            background: "white",
+            background: "#181921",
         },
         text: {
             fontFamily: "RobotoFlex-Regular",
@@ -43,7 +43,7 @@ const App = (): ReactElement => {
                         <NavigationContainer theme={MyTheme}>
                             <ChatProvider>
                                 <BottomSheetModalProvider>
-                                    <StatusBar style="dark" />
+                                    <StatusBar style="light" />
                                     <BottomTabNavigation />
                                 </BottomSheetModalProvider>
                             </ChatProvider>
