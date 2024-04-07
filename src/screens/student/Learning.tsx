@@ -23,13 +23,13 @@ const guides = [
         id: 1,
         title: "Investing 101: Your Ultimate Beginner's Guide",
         text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec purus feugiat, molestie ipsum et, consequat nisl. Nulla facilisi. Nullam ac nunc sit amet elit ultricies posuere. Donec auctor, libero nec ultricies posuere, libero nunc ultrices odio, nec imperdiet nunc odio sit amet nunc. Nulla nec purus feugiat, molestie ipsum et, consequat nisl. Nulla facilisi. Nullam ac nunc sit amet elit ultricies posuere. Donec auctor, libero nec ultricies posuere, libero nunc ultrices odio, nec imperdiet nunc odio sit amet nunc. Nulla nec purus feugiat, molestie ipsum et, consequat nisl. Nulla facilisi. Nullam ac nunc sit amet elit ultricies posuere. Donec auctor, libero nec ultricies posuere, libero nunc ultrices odio, nec imperdiet nunc odio sit amet nunc. Nulla nec purus feugiat, molestie ipsum et, consequat nisl. Nulla facilisi. Nullam ac nunc sit amet elit ultricies posuere. Donec auctor, libero nec ultricies posuere, libero nunc ultrices odio, nec imperdiet nunc odio sit amet nunc. Nulla nec purus feugiat, molestie ipsum et, consequat nisl. Nulla facilisi. Nullam ac nunc sit amet elit ultricies posuere. Donec auctor, libero nec ultricies posuere, libero nunc ultrices odio, nec imperdiet nunc odio sit amet nunc. Nulla nec purus feugiat, molestie ipsum et, consequat nisl. Nulla facilisi. Nullam ac nunc sit amet elit ultricies posuere. Donec auctor, libero nec ultricies posuere, libero nunc ultrices odio, nec imperdiet nunc odio sit amet nunc. Nulla nec purus feugiat, molestie ipsum et, consequat nisl. Nulla facilisi. Nullam ac nunc sit amet elit ultricies posuere. Donec auctor, libero nec ultricies posuere, libero nunc ultrices odio, nec imperdiet nunc odio sit amet nunc. Nulla nec purus feugiat, molestie ipsum et",
-        img: "https://picsum.photos/300/140",
+        img: "https://www.centralbank.net/globalassets/images/articles/lc-the-basics-of-investing.jpg?v=1D833C6DFE07500",
     },
     {
         id: 2,
         title: "Demystifying Investments",
         text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec purus feugiat, molestie ipsum et, consequat nisl. Nulla facilisi. Nullam ac nunc sit amet elit ultricies posuere. Donec auctor, libero nec ultricies posuere, libero nunc ultrices odio, nec imperdiet nunc odio sit amet nunc. Nulla nec purus feugiat, molestie ipsum et, consequat nisl. Nulla facilisi. Nullam ac nunc sit amet elit ultricies posuere. Donec auctor, libero nec ultricies posuere, libero nunc ultrices odio, nec imperdiet nunc odio sit amet nunc. Nulla nec purus feugiat, molestie ipsum et, consequat nisl. Nulla facilisi. Nullam ac nunc sit amet elit ultricies posuere. Donec auctor, libero nec ultricies posuere, libero nunc ultrices odio, nec imperdiet nunc odio sit amet nunc. Nulla nec purus feugiat, molestie ipsum et, consequat nisl. Nulla facilisi. Nullam ac nunc sit amet elit ultricies posuere. Donec auctor, libero nec ultricies posuere, libero nunc ultrices odio, nec imperdiet nunc odio sit amet nunc. Nulla nec purus feugiat, molestie ipsum et, consequat nisl. Nulla facilisi. Nullam ac nunc sit amet elit ultricies posuere. Donec auctor, libero nec ultricies posuere, libero nunc ultrices odio, nec imperdiet nunc odio sit amet nunc. Nulla nec purus feugiat, molestie ipsum et, consequat nisl. Nulla facilisi. Nullam ac nunc sit amet elit ultricies posuere. Donec auctor, libero nec ultricies posuere, libero nunc ultrices odio, nec imperdiet nunc odio sit amet nunc. Nulla nec purus feugiat, molestie ipsum et, consequat nisl. Nulla facilisi. Nullam ac nunc sit amet elit ultricies posuere. Donec auctor, libero nec ultricies posuere, libero nunc ultrices odio, nec imperdiet nunc odio sit amet nunc. Nulla nec purus feugiat, molestie ipsum et",
-        img: "https://picsum.photos/300/140",
+        img: "https://media.gq-magazine.co.uk/photos/5e25d00550c26e0008a9b030/master/pass/20200120-invest.jpg",
     },
 ];
 
@@ -165,7 +165,6 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     contentContainer: {
-        flexGrow: 1,
         paddingTop: 8,
     },
 });
