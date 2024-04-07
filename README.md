@@ -16,7 +16,7 @@ Thank you to the following contributors who have helped create and shape this pr
 -   [Marko Celovsky](https://github.com/MarkoCelovsky)
 -   [Simon Farkas](https://github.com/simonfarkas)
 -   [Simon Jedinak](https://github.com/simonko009)
--   [Damian Sabadsag](https://github.com/damian)
+-   [Damian Sabadsag](https://github.com/stevk0)
 
 And a special thanks goes to all the mentors as well!
 
