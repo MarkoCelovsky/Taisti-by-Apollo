@@ -30,17 +30,17 @@ export enum UserInterest {
 }
 
 export enum UserExperience {
-  Beginner = "Beginner",
-  Intermediate = "Intermediate",
-  Expert = "Expert",
+    Beginner = "Beginner",
+    Intermediate = "Intermediate",
+    Expert = "Expert",
 }
 
 export enum UserAreaOfInterest {
-  Stocks = "Stocks",
-  Bonds = "Bonds",
-  Cryptocurrencies = "Cryptocurrencies",
-  MutualFunds = "Mutual Funds/etfs",
-  Other = "Other",
+    Stocks = "Stocks",
+    Bonds = "Bonds",
+    Cryptocurrencies = "Cryptocurrencies",
+    MutualFunds = "Mutual Funds/etfs",
+    Other = "Other",
 }
 
 export enum UserTolerance {

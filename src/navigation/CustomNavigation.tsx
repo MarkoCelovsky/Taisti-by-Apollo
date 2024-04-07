@@ -23,6 +23,7 @@ import { FirstStepSetup } from "screens/auth/FirstStepSetup";
 import { SecondStepSetup } from "screens/auth/SecondStepSetup";
 import { ThirdStepSetup } from "screens/auth/ThirdStepSetup";
 import { FourthStepSetup } from "screens/auth/FourthStepSetup";
+import { Learning } from "screens/Learning";
 
 const { Navigator, Screen } = createNativeStackNavigator<RootStackNavigatorParamList>();
 
@@ -59,10 +60,26 @@ export const NestedSetupScreens = () => {
                 headerTitleAlign: "center",
             }}
         >
-            <Screen name={Screens.FirstStepSetup} component={FirstStepSetup} options={{ headerShown: false }} />
-            <Screen name={Screens.SecondStepSetup} component={SecondStepSetup} options={{ headerShown: false }} />
-            <Screen name={Screens.ThirdStepSetup} component={ThirdStepSetup} options={{ headerShown: false }} />
-            <Screen name={Screens.FourthStepSetup} component={FourthStepSetup} options={{ headerShown: false }} />
+            <Screen
+                name={Screens.FirstStepSetup}
+                component={FirstStepSetup}
+                options={{ headerShown: false }}
+            />
+            <Screen
+                name={Screens.SecondStepSetup}
+                component={SecondStepSetup}
+                options={{ headerShown: false }}
+            />
+            <Screen
+                name={Screens.ThirdStepSetup}
+                component={ThirdStepSetup}
+                options={{ headerShown: false }}
+            />
+            <Screen
+                name={Screens.FourthStepSetup}
+                component={FourthStepSetup}
+                options={{ headerShown: false }}
+            />
             <Screen
                 name={Screens.PasswordReset}
                 component={PasswordReset}
@@ -201,26 +218,11 @@ export const NestedDashboardScreens2 = () => {
             }}
         >
             <Screen
-                name={Screens.Dashboard}
-                component={Dashboard}
+                name={Screens.Learning}
+                component={Learning}
                 options={{
                     headerShown: false,
                 }}
-            />
-            <Screen
-                name={Screens.MyEquations}
-                component={MyEquations}
-                options={{ title: t("My assets").toString() }}
-            />
-            <Screen
-                name={Screens.NewEquation}
-                component={NewEquation}
-                options={{ title: t("New Equation").toString() }}
-            />
-            <Screen
-                name={Screens.Notifications}
-                component={Notifications}
-                options={{ title: t("Notifications").toString() }}
             />
         </Navigator>
     );

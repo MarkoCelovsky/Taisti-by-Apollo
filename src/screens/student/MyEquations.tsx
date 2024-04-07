@@ -72,8 +72,8 @@ export const MyEquations = (): ReactElement => {
                 {!allLessons.length ? (
                     <View className="flex-1 items-center justify-center gap-4">
                         <EmptyList />
-                        <CustomText className="my-5 text-center text-lg">
-                            {t("You have got no equations!")}
+                        <CustomText className="my-5 text-center text-lg text-white">
+                            {t("You have got no assets!")}
                         </CustomText>
                     </View>
                 ) : (

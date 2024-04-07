@@ -18,7 +18,7 @@ import {
     BottomSheetModal,
     BottomSheetView,
 } from "@gorhom/bottom-sheet";
-import { useIsFocused, useNavigation } from "@react-navigation/native";
+import { TabActions, useIsFocused, useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { FlashList } from "@shopify/flash-list";
 import { addDoc, getCountFromServer, onSnapshot, query, where } from "firebase/firestore";
@@ -62,7 +62,8 @@ export const Dashboard = (): ReactElement => {
     const [selectedStock, setSelectedStock] = useState<Stock | null>(null);
     const [messagesQty, setMessagesQty] = useState(0);
     const isFocused = useIsFocused();
-    const { navigate } = useNavigation<NativeStackNavigationProp<RootStackNavigatorParamList>>();
+    const { dispatch, navigate } =
+        useNavigation<NativeStackNavigationProp<RootStackNavigatorParamList>>();
     const { t } = useTranslation();
 
     const getNotificationCount = useCallback(async () => {
@@ -133,6 +134,11 @@ export const Dashboard = (): ReactElement => {
         };
         getStocks();
     }, [user?.selectedInterest]);
+
+    const navig = () => {
+        const jumpToAction = TabActions.jumpTo(Screens.NestedConversations);
+        dispatch(jumpToAction);
+    };
 
     const buyStock = async (amount: number, stock: Stock) => {
         try {
@@ -206,9 +212,20 @@ export const Dashboard = (): ReactElement => {
                     </View>
                 </View>
 
+                <View style={styles.banner}>
+                    <CustomText style={{ color: "white" }} category="h4">
+                        My portfolio
+                    </CustomText>
+                    <CustomText style={{ color: "white", marginVertical: 12 }} category="h1">
+                        $
+                        {myStocks
+                            .reduce((total, item) => total + item.amount * item.currentPrice, 0)
+                            .toFixed(2)}
+                    </CustomText>
+                </View>
                 <View style={styles.lessonList}>
                     <CustomText category="h4" className="p-4 text-white">
-                        {t(`Recomendations`).toString()} 
+                        {t("Recomendations").toString()}
                     </CustomText>
                     <FlatList
                         data={stocks}
@@ -264,7 +281,7 @@ export const Dashboard = (): ReactElement => {
                 </View>
 
                 <View style={styles.btn}>
-                    <CustomButton status='info' size="giant" onPress={() => navigate(Screens.NewEquation)}>
+                    <CustomButton status="info" size="giant" onPress={navig}>
                         Buy Stocks
                     </CustomButton>
                 </View>
@@ -294,13 +311,14 @@ const styles = StyleSheet.create({
     rootContainer: { flex: 1, backgroundColor: "#181921", color: "#fff" },
     modal: { padding: 16, paddingBottom: 32 },
     btn: { position: "absolute", bottom: 4, paddingHorizontal: 16, width: "100%" },
-    lessonList: { marginTop: 10 },
+    lessonList: { marginTop: 16 },
     scrollContainer: { paddingTop: 16, flexGrow: 1 },
     container: { paddingHorizontal: 16 },
     nextEventHeading: { color: "gray", fontSize: 14 },
     cardCtr: { paddingRight: 16 },
     singleCard: { width: Dimensions.get("screen").width - 16, paddingRight: 16 },
     horizontalList: { paddingLeft: 16 },
+    banner: { borderRadius: 16, padding: 16, margin: 16, backgroundColor: "#006DFC" },
     headingContainer: {
         flexDirection: "row",
         justifyContent: "space-between",

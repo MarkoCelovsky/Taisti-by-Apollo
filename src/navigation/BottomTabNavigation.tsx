@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
         width: "100%",
         height: "35%",
         bottom: 0,
-        backgroundColor: "#242728", 
+        backgroundColor: "#242728",
     },
 });
 
@@ -165,7 +165,7 @@ export const BottomTabNavigation = (): ReactElement => {
                             name: "bar-chart",
                         }),
                     headerShown: false,
-                    title: `${t("Messages")}`,
+                    title: `${t("Market")}`,
                 }}
             />
             <Screen

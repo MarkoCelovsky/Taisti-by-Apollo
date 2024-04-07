@@ -9,6 +9,7 @@ export enum ProfileScreens {
 
 export enum Screens {
     NestedSetup = "NestedSetup",
+    Learning = "Learning",
     Auth = "Auth",
     FirstStepSetup = "FirstStepSetup",
     SecondStepSetup = "SecondStepSetup",
