@@ -9,6 +9,7 @@ import {
     StyleSheet,
     TouchableOpacity,
     View,
+    ViewBase,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Feather } from "@expo/vector-icons";
@@ -17,7 +18,6 @@ import {
     BottomSheetBackdrop,
     BottomSheetBackdropProps,
     BottomSheetModal,
-    BottomSheetView,
 } from "@gorhom/bottom-sheet";
 import { TabActions, useIsFocused, useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
@@ -357,32 +357,40 @@ const Card = ({ item }: { item: Stock }) => (
         <View
             style={{
                 flexDirection: "row",
-                justifyContent: "space-between",
+                alignItems: "center",
                 padding: 16,
             }}
         >
-            <View>
-                <CustomText category="h6" style={{ color: "#fff" }}>
-                    {item.symbol}
-                </CustomText>
-                <CustomText category="p2" style={{ color: "#888" }}>
-                    {item.companyName}
-                </CustomText>
+            <View className="mx-2 flex flex-row">
+                <Image
+                    source={{ uri: item.img }}
+                    style={{ width: 35, height: 35, borderRadius: 25 }}
+                    accesbililityInversonColors
+                />
+                <View className="ml-4 flex flex-col">
+                    <CustomText category="h6" style={{ color: "#fff" }}>
+                        {item.symbol}
+                    </CustomText>
+                    <CustomText category="p2" style={{ color: "#888" }}>
+                        {item.companyName}
+                    </CustomText>
+                </View>
             </View>
             <View>
                 <CustomText category="h6" style={{ color: "#fff" }}>
                     {item.currentPrice.toFixed(2)}
                 </CustomText>
-                {/* <CustomText */}
-                {/*     category="p2" */}
-                {/*     style={{ */}
-                {/*         color: item.finalTotal && item.finalTotal > 0 ? "#008000" : "#ff0000", */}
-                {/*     }} */}
-                {/* > */}
-                {/*     {" "} */}
-                {/*     ({item.finalTotal > 0 ? "+" : ""} */}
-                {/*     {item.finalTotal.toFixed(2)}%) */}
-                {/* </CustomText> */}
+                {item?.finalTotal && (
+                    <CustomText
+                        category="p2"
+                        style={{
+                            color: item.finalTotal && item.finalTotal > 0 ? "#008000" : "#ff0000",
+                        }}
+                    >
+                        ({item?.finalTotal > 0 ? "+" : ""}
+                        {item?.finalTotal.toFixed(2)}%)
+                    </CustomText>
+                )}
             </View>
         </View>
     </View>

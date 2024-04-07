@@ -1,57 +1,127 @@
-import { useAuth } from "context/auth-context";
-import { ReactElement, useCallback, useState } from "react";
-import { StyleSheet } from "react-native";
-import { GiftedChat, IMessage } from "react-native-gifted-chat";
+import { CustomText, CustomInput } from "components/UI/CustomElements";
+import React, { useState } from "react";
+import { View, Text, StyleSheet, ScrollView, KeyboardAvoidingView, Keyboard } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { Feather } from "@expo/vector-icons";
+import { Platform } from "expo-modules-core";
+import { chatbot } from "schema/data";
 
-export const AI = (): ReactElement => {
-    const { userId, user } = useAuth();
-    const [messages, setMessages] = useState<IMessage[]>([
-        {
-            _id: "ai",
-            createdAt: +new Date(),
-            user: { _id: "ai", name: "Apollo Partner" },
-            text: `There isn't a single "best" investment that's perfect for everyone. It really depends on your financial goals and risk tolerance.
+export const Taisti = () => {
+    const [messages, setMessages] = useState<{ id: ""; text: ""; role: "" }>([]);
+    const [inputText, setInputText] = useState("");
 
-    That said, Bitcoin has been on a downward trend lately. While it's possible the price could rise again in the future,  cryptocurrencies are inherently volatile, so they carry a significant amount of risk.
+    const handleSendMessage = () => {
+        if (inputText.trim() !== "") {
+            const newUserMessage = {
+                text: inputText,
+                fromUser: true,
+                id: Math.random().toString(),
+            };
+            setMessages([...messages, newUserMessage]);
 
-    Would you like me to help you explore some investment options that might be a better fit for your risk profile? We can look at a variety of assets like stocks, ETFs, and bonds.`,
-        },
-        {
-            _id: userId || "user",
-            createdAt: +new Date(Date.now() - 2 * 60 * 1000),
-            user: { _id: userId || "user", name: user?.fullName },
-            text: "What is the best investment nowadays",
-        },
-    ]);
+            const botResponse = chatbot.find((qa) => qa.question === inputText);
+            if (botResponse) {
+                const newBotMessage = {
+                    text: botResponse.response,
+                    fromUser: false,
+                    id: Math.random().toString(),
+                };
+                setTimeout(() => {
+                    setMessages((prev) => [...prev, newBotMessage]);
+                }, 1000);
+            } else {
+                const newBotMessage = {
+                    text: "Sorry, I don't understand that yet.",
+                    fromUser: false,
+                    id: Math.random().toString(),
+                };
+                setTimeout(() => {
+                    setMessages((prev) => [...prev, newBotMessage]);
+                }, 1000);
+            }
 
-    const onSend = useCallback((msgs: IMessage[] = []) => {
-        setMessages((curr) =>
-            GiftedChat.append(curr, [
-                {
-                    _id: "ai2" + `${Math.random()}`,
-                    createdAt: +new Date(),
-                    user: { _id: "ai", name: "Apollo Partner" },
-                    text: "Always happy to help",
-                },
-                ...msgs,
-            ]),
-        );
-    }, []);
+            // close keyboard
+            Keyboard.dismiss();
+            setInputText("");
+        }
+    };
+
+    const renderIconRight = () => (
+        <Feather name="send" size={24} color="white" onPress={handleSendMessage} />
+    );
 
     return (
-        <SafeAreaView style={styles.rootContainer}>
-            <GiftedChat
-                messages={messages}
-                onSend={(giftedMessages) => onSend(giftedMessages)}
-                user={{ _id: userId || "user" }}
-                bottomOffset={0}
-                renderUsernameOnMessage
-                timeFormat="HH:mm"
-            />
+        <SafeAreaView style={styles.container}>
+            <CustomText className="mb-4 text-center text-2xl text-white">Taisti AI</CustomText>
+            <ScrollView contentContainerStyle={styles.messagesContainer}>
+                {messages.map((message, index) => (
+                    <View
+                        key={index}
+                        style={[
+                            styles.messageBubble,
+                            message.fromUser ? styles.userMessage : styles.botMessage,
+                        ]}
+                    >
+                        <Text style={{ color: "#fff" }}>{message.text}</Text>
+                    </View>
+                ))}
+            </ScrollView>
+            <KeyboardAvoidingView
+                style={styles.inputContainer}
+                behavior={Platform.OS === "ios" ? "padding" : "height"}
+                keyboardVerticalOffset={Platform.OS === "ios" ? 0 : -150}
+            >
+                <CustomInput
+                    style={styles.input}
+                    value={inputText}
+                    onChangeText={setInputText}
+                    placeholder="Type your message..."
+                    placeholderTextColor="#fff"
+                    accessoryRight={renderIconRight}
+                    textStyle={{ color: "#fff" }}
+                />
+            </KeyboardAvoidingView>
         </SafeAreaView>
     );
 };
+
 const styles = StyleSheet.create({
-    rootContainer: { flexGrow: 1 },
+    container: {
+        flex: 1,
+        padding: 10,
+    },
+    messagesContainer: {
+        flexGrow: 1,
+        marginHorizontal: 17,
+    },
+    messageBubble: {
+        padding: 10,
+        marginVertical: 5,
+        borderRadius: 10,
+        maxWidth: "80%",
+    },
+    userMessage: {
+        alignSelf: "flex-end",
+        backgroundColor: "#4F5355",
+        color: "#ffffff",
+    },
+    botMessage: {
+        alignSelf: "flex-start",
+        backgroundColor: "#006DFC",
+    },
+    inputContainer: {
+        flexDirection: "row",
+        alignItems: "center",
+        paddingVertical: 5,
+    },
+    input: {
+        flex: 1,
+        backgroundColor: "#242728",
+        color: "#fff",
+        borderRadius: 4,
+        paddingHorizontal: 15,
+        paddingVertical: 10,
+        marginRight: 10,
+        borderWidth: 0,
+    },
 });
