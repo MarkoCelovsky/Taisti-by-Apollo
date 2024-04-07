@@ -7,7 +7,7 @@ import { Screens } from "screens/screen-names";
 import { Chat } from "screens/shared/Chat";
 import { ChatDetails } from "screens/shared/ChatDetails";
 import { ChatMembers } from "screens/shared/ChatMembers";
-import { PopularMarket } from "screens/shared/PopularMarket";
+import { PopularMarket } from "screens/student/PopularMarket";
 import { EditProfile } from "screens/shared/EditProfile";
 import { LanguagePreferences } from "screens/shared/LanguagePreferences";
 import { NotificationPreferences } from "screens/shared/NotificationPreferences";
@@ -15,7 +15,7 @@ import { Notifications } from "screens/shared/Notifications";
 import { Profile } from "screens/shared/Profile";
 import { TempChat } from "screens/shared/TempChat";
 import { Dashboard } from "screens/student/Dashboard";
-
+import { Learning } from "screens/student/Learning";
 import { RootStackNavigatorParamList } from "schema/navigationTypes";
 import { MyEquations } from "screens/student/MyEquations";
 import { NewEquation } from "screens/student/NewEquation";
@@ -23,7 +23,8 @@ import { FirstStepSetup } from "screens/auth/FirstStepSetup";
 import { SecondStepSetup } from "screens/auth/SecondStepSetup";
 import { ThirdStepSetup } from "screens/auth/ThirdStepSetup";
 import { FourthStepSetup } from "screens/auth/FourthStepSetup";
-import { Learning } from "screens/Learning";
+import { Community } from "screens/student/Community";
+import { AI } from "screens/student/AI";
 
 const { Navigator, Screen } = createNativeStackNavigator<RootStackNavigatorParamList>();
 
@@ -186,26 +187,11 @@ export const NestedDashboardScreens = () => {
                     headerShown: false,
                 }}
             />
-            <Screen
-                name={Screens.MyEquations}
-                component={MyEquations}
-                options={{ title: t("My assets").toString() }}
-            />
-            <Screen
-                name={Screens.NewEquation}
-                component={NewEquation}
-                options={{ title: t("New Equation").toString() }}
-            />
-            <Screen
-                name={Screens.Notifications}
-                component={Notifications}
-                options={{ title: t("Notifications").toString() }}
-            />
         </Navigator>
     );
 };
 
-export const NestedDashboardScreens2 = () => {
+export const NestedLearningScreens = () => {
     return (
         <Navigator
             screenOptions={{
@@ -228,7 +214,7 @@ export const NestedDashboardScreens2 = () => {
     );
 };
 
-export const NestedDashboardScreens3 = () => {
+export const NestedAIScreens = () => {
     return (
         <Navigator
             screenOptions={{
@@ -241,26 +227,34 @@ export const NestedDashboardScreens3 = () => {
             }}
         >
             <Screen
-                name={Screens.Dashboard}
-                component={Dashboard}
+                name={Screens.AI}
+                component={AI}
                 options={{
                     headerShown: false,
                 }}
             />
+        </Navigator>
+    );
+};
+
+export const NestedCommunityScreens = () => {
+    return (
+        <Navigator
+            screenOptions={{
+                headerBackTitleVisible: false,
+                animation: "simple_push",
+                gestureEnabled: true,
+                gestureDirection: "horizontal",
+                headerShadowVisible: false,
+                headerTitleAlign: "center",
+            }}
+        >
             <Screen
-                name={Screens.MyEquations}
-                component={MyEquations}
-                options={{ title: t("My assets").toString() }}
-            />
-            <Screen
-                name={Screens.NewEquation}
-                component={NewEquation}
-                options={{ title: t("New Equation").toString() }}
-            />
-            <Screen
-                name={Screens.Notifications}
-                component={Notifications}
-                options={{ title: t("Notifications").toString() }}
+                name={Screens.Community}
+                component={Community}
+                options={{
+                    headerShown: false,
+                }}
             />
         </Navigator>
     );

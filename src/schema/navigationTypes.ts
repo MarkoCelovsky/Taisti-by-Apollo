@@ -14,9 +14,15 @@ export type ProfileNavigationParamList = {
 export type RootStackNavigatorParamList = {
     EditProfile: undefined;
     ResolveApplications: undefined;
-
+    Community: undefined;
+    NestedCommunityScreens: undefined;
+    NestedLearningScreens: undefined;
     Setup: undefined;
     Learning: undefined;
+    NestedLearning: undefined;
+    AI: undefined;
+    NestedAI: undefined;
+    NestedAIScreens: undefined;
     NestedSetup: undefined;
     Authenticate: undefined;
     FirstStepSetup: undefined;

@@ -69,6 +69,7 @@ type PriceChange = {
 export type Stock = {
     symbol: string;
     companyName: string;
+    img?: string;
     finalTotal?: number;
     currentPrice: number;
     userPreference?: UserPreference; // Optional: User preference category for the stock

@@ -1,4 +1,4 @@
-import { ReactElement, useCallback, useMemo, useRef, useState } from "react";
+import { ReactElement, useCallback, useRef, useState } from "react";
 import { ScrollView, StyleSheet, View, TouchableOpacity } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import {
@@ -13,21 +13,68 @@ import { stocksCol } from "utils/firebase.config";
 import { CustomText } from "components/UI/CustomElements";
 import { Image } from "expo-image";
 import { Stock } from "schema/types";
-import {
-    entertainmentStocks,
-    gastronomyStocks,
-    healthcareStocks,
-    sportsStocks,
-    technologyStocks,
-} from "schema/data";
 import { BuyStock } from "components/modals/BuyStock";
 import { CustomInput } from "components/UI/CustomElements";
+import { PortfolioModal } from "components/modals/PortfolioModal";
+import { Icon } from "@ui-kitten/components";
 
-export const PopularMarket = (): ReactElement => {
-    const [query, setQuery] = useState("");
+const portfolios = [
+    {
+        id: 1,
+        name: "John Doe",
+        totalProfitSinceLastWeek: -0.7,
+        stocks: [
+            {
+                symbol: "AAPL",
+                companyName: "Apple Inc.",
+                currentPrice: 150.0,
+                finalTotal: 0.0,
+            },
+            {
+                symbol: "GOOGL",
+                companyName: "Alphabet Inc.",
+                currentPrice: 2500.0,
+                finalTotal: 0.0,
+            },
+            {
+                symbol: "TSLA",
+                companyName: "Tesla Inc.",
+                currentPrice: 700.0,
+                finalTotal: 0.0,
+            },
+        ],
+    },
+    {
+        id: 2,
+        name: "John Doe",
+        totalProfitSinceLastWeek: 2.7,
+        stocks: [
+            {
+                symbol: "AAPL",
+                companyName: "Apple Inc.",
+                currentPrice: 150.0,
+                finalTotal: 0.0,
+            },
+            {
+                symbol: "GOOGL",
+                companyName: "Alphabet Inc.",
+                currentPrice: 2500.0,
+                finalTotal: 0.0,
+            },
+            {
+                symbol: "TSLA",
+                companyName: "Tesla Inc.",
+                currentPrice: 700.0,
+                finalTotal: 0.0,
+            },
+        ],
+    },
+];
+
+export const Community = (): ReactElement => {
     const bottomSheetModalRef = useRef<BottomSheetModal>(null);
     const { userId, user } = useAuth();
-    const [selectedStock, setSelectedStock] = useState<Stock | null>(null);
+    const [selectedPortfolio, setSelectedPortfolio] = useState<any | null>(null);
 
     const openModalHandler = useCallback(() => {
         bottomSheetModalRef.current?.present();
@@ -44,35 +91,10 @@ export const PopularMarket = (): ReactElement => {
         [],
     );
 
-    const mergedStocks = useMemo(
-        () => [
-            ...sportsStocks,
-            ...technologyStocks,
-            ...gastronomyStocks,
-            ...entertainmentStocks,
-            ...healthcareStocks,
-        ],
-        [],
-    );
-
-    const buyStock = async (amount: number, stock: Stock) => {
-        try {
-            await addDoc(stocksCol(userId || "test"), { ...stock, amount });
-            handleCloseModal();
-        } catch (error) {
-            console.error(error);
-        }
-    };
-
-    const openStock = (stock: Stock) => {
-        setSelectedStock(stock);
+    const openPortfolio = (portfolio: any) => {
+        setSelectedPortfolio(portfolio);
         openModalHandler();
     };
-    const filteredStocks = useMemo(() => {
-        return mergedStocks.filter((stock) =>
-            stock.companyName.toLowerCase().includes(query.toLowerCase()),
-        );
-    }, [mergedStocks, query]);
 
     if (!userId || !user) {
         return <LoadingSpinner />;
@@ -86,21 +108,16 @@ export const PopularMarket = (): ReactElement => {
                     source={{ uri: user?.photoURL || "" }}
                     accessibilityIgnoresInvertColors
                 />
-                <CustomInput
-                    placeholder="Search"
-                    className="w-2/3"
-                    value={query}
-                    onChangeText={(text) => setQuery(text)}
-                />
+                <CustomInput placeholder="Search" className="w-2/3" />
             </View>
             <ScrollView contentContainerStyle={styles.contentContainer}>
-                {filteredStocks.slice(5).map((item) => (
+                {portfolios.map((item) => (
                     <TouchableOpacity
+                        key={item.id}
                         accessibilityRole="button"
-                        key={item.companyName}
                         activeOpacity={0.5}
                         accessibilityIgnoresInvertColors
-                        onPress={() => openStock(item)}
+                        onPress={() => openPortfolio(item)}
                     >
                         <Card item={item} />
                     </TouchableOpacity>
@@ -116,17 +133,13 @@ export const PopularMarket = (): ReactElement => {
                     backgroundColor: "#242728",
                 }}
             >
-                <BuyStock
-                    stock={selectedStock}
-                    handleCloseModal={handleCloseModal}
-                    buyHandler={buyStock}
-                />
+                <PortfolioModal portfolio={selectedPortfolio} />
             </BottomSheetModal>
         </SafeAreaView>
     );
 };
 
-const Card = ({ item }: { item: Stock }) => (
+const Card = ({ item }: { item: any }) => (
     <View
         style={{
             backgroundColor: "#242728",
@@ -144,30 +157,39 @@ const Card = ({ item }: { item: Stock }) => (
                 padding: 16,
             }}
         >
-            <View>
+            <View className="flex w-full flex-row items-center justify-between">
                 <CustomText category="h6" style={{ color: "#fff" }}>
-                    {item.symbol}
+                    {item.name}
                 </CustomText>
-                <CustomText category="p2" style={{ color: "#888" }}>
-                    {item.companyName}
-                </CustomText>
+                <View
+                    style={{
+                        backgroundColor: "#4F5355",
+                        padding: 4,
+                        borderRadius: 4,
+                        width: 90,
+                    }}
+                >
+                    <CustomText category="p2" style={{ color: "#fff" }}>
+                        {item.totalProfitSinceLastWeek > 0
+                            ? `+${item.totalProfitSinceLastWeek}% since last week`
+                            : `${item.totalProfitSinceLastWeek}% since last week`}
+                    </CustomText>
+                </View>
             </View>
-
-            <View>
+            {/* <View>
                 <CustomText category="h6" style={{ color: "#fff" }}>
                     {item.currentPrice.toFixed(2)}
                 </CustomText>
                 <CustomText
                     category="p2"
                     style={{
-                        color: item.finalTotal && item.finalTotal > 0 ? "#ff0000" : "#008000",
+                        color: item.finalTotal && item.finalTotal > 0 ? "#008000" : "#ff0000",
                     }}
                 >
-                    {" "}
                     ({item.currentPrice > 0 ? "+" : ""}
-                    {(item.currentPrice / 7.5).toFixed(2)}%)
+                    {item.currentPrice.toFixed(2)}%)
                 </CustomText>
-            </View>
+            </View> */}
         </View>
     </View>
 );
@@ -188,6 +210,5 @@ const styles = StyleSheet.create({
     contentContainer: {
         flexGrow: 1,
         paddingTop: 8,
-        paddingBottom: 60,
     },
 });

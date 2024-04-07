@@ -11,9 +11,10 @@ import {
     NestedConversationsScreens,
     NestedDashboardScreens,
     NestedProfileScreens,
+    NestedAIScreens,
     NestedSetupScreens,
-    NestedDashboardScreens2,
-    NestedDashboardScreens3,
+    NestedLearningScreens,
+    NestedCommunityScreens,
 } from "./CustomNavigation";
 import { LinearGradient } from "expo-linear-gradient";
 
@@ -169,8 +170,8 @@ export const BottomTabNavigation = (): ReactElement => {
                 }}
             />
             <Screen
-                name={Screens.NestedProfile}
-                component={NestedProfileScreens}
+                name={Screens.NestedAI}
+                component={NestedAIScreens}
                 options={{
                     tabBarIcon: ({ color, size }) =>
                         tabBarFontAwesomeComponent(
@@ -186,8 +187,8 @@ export const BottomTabNavigation = (): ReactElement => {
                 }}
             />
             <Screen
-                name={Screens.NestedDashboard2}
-                component={NestedDashboardScreens2}
+                name={Screens.NestedLearning}
+                component={NestedLearningScreens}
                 options={{
                     tabBarIcon: ({ color, size }) =>
                         tabBarFontAwesomeComponent({
@@ -200,8 +201,8 @@ export const BottomTabNavigation = (): ReactElement => {
                 }}
             />
             <Screen
-                name={Screens.NestedDashboard3}
-                component={NestedDashboardScreens3}
+                name={Screens.NestedCommunity}
+                component={NestedCommunityScreens}
                 options={{
                     tabBarIcon: ({ color, size }) =>
                         tabBarFontAwesomeComponent({
