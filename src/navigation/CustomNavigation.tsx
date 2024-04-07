@@ -7,7 +7,7 @@ import { Screens } from "screens/screen-names";
 import { Chat } from "screens/shared/Chat";
 import { ChatDetails } from "screens/shared/ChatDetails";
 import { ChatMembers } from "screens/shared/ChatMembers";
-import { PopularMarket } from "screens/shared/PopularMarket";
+import { PopularMarket } from "screens/student/PopularMarket";
 import { EditProfile } from "screens/shared/EditProfile";
 import { LanguagePreferences } from "screens/shared/LanguagePreferences";
 import { NotificationPreferences } from "screens/shared/NotificationPreferences";
@@ -15,7 +15,7 @@ import { Notifications } from "screens/shared/Notifications";
 import { Profile } from "screens/shared/Profile";
 import { TempChat } from "screens/shared/TempChat";
 import { Dashboard } from "screens/student/Dashboard";
-
+import { Learning } from "screens/student/Learning";
 import { RootStackNavigatorParamList } from "schema/navigationTypes";
 import { MyEquations } from "screens/student/MyEquations";
 import { NewEquation } from "screens/student/NewEquation";
@@ -59,10 +59,26 @@ export const NestedSetupScreens = () => {
                 headerTitleAlign: "center",
             }}
         >
-            <Screen name={Screens.FirstStepSetup} component={FirstStepSetup} options={{ headerShown: false }} />
-            <Screen name={Screens.SecondStepSetup} component={SecondStepSetup} options={{ headerShown: false }} />
-            <Screen name={Screens.ThirdStepSetup} component={ThirdStepSetup} options={{ headerShown: false }} />
-            <Screen name={Screens.FourthStepSetup} component={FourthStepSetup} options={{ headerShown: false }} />
+            <Screen
+                name={Screens.FirstStepSetup}
+                component={FirstStepSetup}
+                options={{ headerShown: false }}
+            />
+            <Screen
+                name={Screens.SecondStepSetup}
+                component={SecondStepSetup}
+                options={{ headerShown: false }}
+            />
+            <Screen
+                name={Screens.ThirdStepSetup}
+                component={ThirdStepSetup}
+                options={{ headerShown: false }}
+            />
+            <Screen
+                name={Screens.FourthStepSetup}
+                component={FourthStepSetup}
+                options={{ headerShown: false }}
+            />
             <Screen
                 name={Screens.PasswordReset}
                 component={PasswordReset}
@@ -169,26 +185,11 @@ export const NestedDashboardScreens = () => {
                     headerShown: false,
                 }}
             />
-            <Screen
-                name={Screens.MyEquations}
-                component={MyEquations}
-                options={{ title: t("My assets").toString() }}
-            />
-            <Screen
-                name={Screens.NewEquation}
-                component={NewEquation}
-                options={{ title: t("New Equation").toString() }}
-            />
-            <Screen
-                name={Screens.Notifications}
-                component={Notifications}
-                options={{ title: t("Notifications").toString() }}
-            />
         </Navigator>
     );
 };
 
-export const NestedDashboardScreens2 = () => {
+export const NestedLearningScreens = () => {
     return (
         <Navigator
             screenOptions={{
@@ -201,32 +202,17 @@ export const NestedDashboardScreens2 = () => {
             }}
         >
             <Screen
-                name={Screens.Dashboard}
-                component={Dashboard}
+                name={Screens.Learning}
+                component={Learning}
                 options={{
                     headerShown: false,
                 }}
-            />
-            <Screen
-                name={Screens.MyEquations}
-                component={MyEquations}
-                options={{ title: t("My assets").toString() }}
-            />
-            <Screen
-                name={Screens.NewEquation}
-                component={NewEquation}
-                options={{ title: t("New Equation").toString() }}
-            />
-            <Screen
-                name={Screens.Notifications}
-                component={Notifications}
-                options={{ title: t("Notifications").toString() }}
             />
         </Navigator>
     );
 };
 
-export const NestedDashboardScreens3 = () => {
+export const NestedCommunityScreens = () => {
     return (
         <Navigator
             screenOptions={{
@@ -237,29 +223,6 @@ export const NestedDashboardScreens3 = () => {
                 headerShadowVisible: false,
                 headerTitleAlign: "center",
             }}
-        >
-            <Screen
-                name={Screens.Dashboard}
-                component={Dashboard}
-                options={{
-                    headerShown: false,
-                }}
-            />
-            <Screen
-                name={Screens.MyEquations}
-                component={MyEquations}
-                options={{ title: t("My assets").toString() }}
-            />
-            <Screen
-                name={Screens.NewEquation}
-                component={NewEquation}
-                options={{ title: t("New Equation").toString() }}
-            />
-            <Screen
-                name={Screens.Notifications}
-                component={Notifications}
-                options={{ title: t("Notifications").toString() }}
-            />
-        </Navigator>
+        ></Navigator>
     );
 };

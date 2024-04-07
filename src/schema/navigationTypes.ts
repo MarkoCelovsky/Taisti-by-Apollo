@@ -14,7 +14,9 @@ export type ProfileNavigationParamList = {
 export type RootStackNavigatorParamList = {
     EditProfile: undefined;
     ResolveApplications: undefined;
-
+    Community: undefined;
+    NestedCommunityScreens: undefined;
+    NestedLearningScreens: undefined;
     Setup: undefined;
     NestedSetup: undefined;
     Authenticate: undefined;
@@ -30,6 +32,7 @@ export type RootStackNavigatorParamList = {
     PasswordReset: undefined;
     Manage: undefined;
     NestedAdminDashboard: undefined;
+    NestedLearning: undefined;
     AdminDashboard: undefined;
     Notifications: undefined;
     PopularMarket: undefined;
@@ -37,6 +40,7 @@ export type RootStackNavigatorParamList = {
     NotificationPreferences: undefined;
     NewEquation: undefined;
     MyEquations: undefined;
+    Learning: undefined;
 
     Chat: { user: User | null; chatId: string; userIds: string[] };
     ChatDetails: { chatId: string };

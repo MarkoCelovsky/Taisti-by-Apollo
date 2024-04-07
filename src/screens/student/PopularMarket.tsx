@@ -6,7 +6,7 @@ import {
     BottomSheetBackdropProps,
     BottomSheetModal,
 } from "@gorhom/bottom-sheet";
-import { addDoc} from "firebase/firestore";
+import { addDoc } from "firebase/firestore";
 import { LoadingSpinner } from "components/UI/LoadingSpinner";
 import { useAuth } from "context/auth-context";
 import { stocksCol } from "utils/firebase.config";
@@ -27,7 +27,6 @@ export const PopularMarket = (): ReactElement => {
     const bottomSheetModalRef = useRef<BottomSheetModal>(null);
     const { userId, user } = useAuth();
     const [selectedStock, setSelectedStock] = useState<Stock | null>(null);
-
 
     const openModalHandler = useCallback(() => {
         bottomSheetModalRef.current?.present();
@@ -78,11 +77,12 @@ export const PopularMarket = (): ReactElement => {
                     source={{ uri: user?.photoURL || "" }}
                     accessibilityIgnoresInvertColors
                 />
-                <CustomInput placeholder="Search" className='w-2/3' />
+                <CustomInput placeholder="Search" className="w-2/3" />
             </View>
             <ScrollView contentContainerStyle={styles.contentContainer}>
                 {mergedStocks.slice(5).map((item) => (
                     <TouchableOpacity
+                        key={item.symbol}
                         accessibilityRole="button"
                         activeOpacity={0.5}
                         accessibilityIgnoresInvertColors
@@ -160,7 +160,7 @@ const Card = ({ item }: { item: Stock }) => (
 const styles = StyleSheet.create({
     rootContainer: { flexGrow: 1, backgroundColor: "#181921", color: "#fff" },
     userBar: {
-        width: '100%',
+        width: "100%",
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "center",
