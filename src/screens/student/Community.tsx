@@ -17,6 +17,10 @@ import { BuyStock } from "components/modals/BuyStock";
 import { CustomInput } from "components/UI/CustomElements";
 import { PortfolioModal } from "components/modals/PortfolioModal";
 import { Icon } from "@ui-kitten/components";
+import { Screens } from "screens/screen-names";
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { RootStackNavigatorParamList } from "schema/navigationTypes";
 
 const portfolios = [
     {
@@ -95,6 +99,7 @@ export const Community = (): ReactElement => {
         setSelectedPortfolio(portfolio);
         openModalHandler();
     };
+    const { navigate } = useNavigation<NativeStackNavigationProp<RootStackNavigatorParamList>>();
 
     if (!userId || !user) {
         return <LoadingSpinner />;
@@ -103,12 +108,17 @@ export const Community = (): ReactElement => {
     return (
         <SafeAreaView style={styles.rootContainer}>
             <View style={styles.userBar}>
-                <Image
-                    style={{ height: 60, width: 60, marginRight: 32 }}
-                    source={{ uri: user?.photoURL || "" }}
-                    accessibilityIgnoresInvertColors
-                />
-                <CustomInput placeholder="Search" className="w-2/3" />
+                <TouchableOpacity
+                    onPress={() => navigate(Screens.Profile)}
+                    accessibilityRole="button"
+                >
+                    <Image
+                        style={{ height: 60, width: 60, marginRight: 8 }}
+                        source={{ uri: user.photoURL || "" }}
+                        accessibilityIgnoresInvertColors
+                    />
+                </TouchableOpacity>
+                <CustomInput placeholder="Search" style={styles.search} />
             </View>
             <ScrollView contentContainerStyle={styles.contentContainer}>
                 {portfolios.map((item) => (
@@ -196,11 +206,14 @@ const Card = ({ item }: { item: any }) => (
 
 const styles = StyleSheet.create({
     rootContainer: { flexGrow: 1, backgroundColor: "#181921", color: "#fff" },
+    search: { flex: 1 },
     userBar: {
         width: "100%",
         flexDirection: "row",
         alignItems: "center",
-        justifyContent: "center",
+        justifyContent: "space-between",
+        paddingHorizontal: 16,
+        marginTop: 26,
     },
     cardContainer: {
         flex: 1,

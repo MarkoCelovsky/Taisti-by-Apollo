@@ -11,8 +11,8 @@ interface Props {
 export const ListItem = ({ onPress, title }: Props): ReactElement => {
     return (
         <TouchableOpacity onPress={onPress} style={styles.listItem} accessibilityRole="button">
-            <CustomText className="text-base font-semibold">{title}</CustomText>
-            <AntDesign name="right" size={20} color="black" />
+            <CustomText className="text-base font-semibold text-white">{title}</CustomText>
+            <AntDesign name="right" size={20} color="white" />
         </TouchableOpacity>
     );
 };

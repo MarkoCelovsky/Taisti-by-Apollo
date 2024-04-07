@@ -22,6 +22,10 @@ import {
 } from "schema/data";
 import { BuyStock } from "components/modals/BuyStock";
 import { CustomInput } from "components/UI/CustomElements";
+import { Screens } from "screens/screen-names";
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { RootStackNavigatorParamList } from "schema/navigationTypes";
 
 export const PopularMarket = (): ReactElement => {
     const [query, setQuery] = useState("");
@@ -55,6 +59,8 @@ export const PopularMarket = (): ReactElement => {
         [],
     );
 
+    const { navigate } = useNavigation<NativeStackNavigationProp<RootStackNavigatorParamList>>();
+
     const buyStock = async (amount: number, stock: Stock) => {
         try {
             await addDoc(stocksCol(userId || "test"), { ...stock, amount });
@@ -81,14 +87,19 @@ export const PopularMarket = (): ReactElement => {
     return (
         <SafeAreaView style={styles.rootContainer}>
             <View style={styles.userBar}>
-                <Image
-                    style={{ height: 60, width: 60, marginRight: 32 }}
-                    source={{ uri: user?.photoURL || "" }}
-                    accessibilityIgnoresInvertColors
-                />
+                <TouchableOpacity
+                    onPress={() => navigate(Screens.Profile)}
+                    accessibilityRole="button"
+                >
+                    <Image
+                        style={{ height: 60, width: 60, marginRight: 8 }}
+                        source={{ uri: user.photoURL || "" }}
+                        accessibilityIgnoresInvertColors
+                    />
+                </TouchableOpacity>
                 <CustomInput
                     placeholder="Search"
-                    className="w-2/3"
+                    style={styles.search}
                     value={query}
                     onChangeText={(text) => setQuery(text)}
                 />
@@ -98,7 +109,6 @@ export const PopularMarket = (): ReactElement => {
                     <TouchableOpacity
                         key={item.symbol}
                         accessibilityRole="button"
-                        key={item.companyName}
                         activeOpacity={0.5}
                         accessibilityIgnoresInvertColors
                         onPress={() => openStock(item)}
@@ -182,11 +192,14 @@ const Card = ({ item }: { item: Stock }) => (
 
 const styles = StyleSheet.create({
     rootContainer: { flexGrow: 1, backgroundColor: "#181921", color: "#fff" },
+    search: { flex: 1 },
     userBar: {
         width: "100%",
         flexDirection: "row",
         alignItems: "center",
-        justifyContent: "center",
+        justifyContent: "space-between",
+        paddingHorizontal: 16,
+        marginTop: 26,
     },
     cardContainer: {
         flex: 1,

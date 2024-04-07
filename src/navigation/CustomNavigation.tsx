@@ -123,6 +123,28 @@ export const NestedConversationsScreens = () => {
     );
 };
 
+const profile = (
+    <>
+        <Screen name={Screens.Profile} component={Profile} />
+        <Screen
+            name={Screens.EditProfile}
+            component={EditProfile}
+            options={{ title: t("Edit profile").toString() }}
+        />
+
+        <Screen
+            name={Screens.LanguagePreferences}
+            component={LanguagePreferences}
+            options={{ title: t("Language preferences").toString() }}
+        />
+        <Screen
+            name={Screens.NotificationPreferences}
+            component={NotificationPreferences}
+            options={{ title: t("Notification preferences").toString() }}
+        />
+    </>
+);
+
 export const NestedProfileScreens = () => {
     return (
         <Navigator
@@ -134,7 +156,7 @@ export const NestedProfileScreens = () => {
                 headerTitleAlign: "center",
             }}
         >
-            <Screen name={Screens.Profile} component={Profile} options={{ headerShown: false }} />
+            <Screen name={Screens.Profile} component={Profile} />
             <Screen
                 name={Screens.EditProfile}
                 component={EditProfile}
@@ -187,6 +209,7 @@ export const NestedDashboardScreens = () => {
                     headerShown: false,
                 }}
             />
+            {profile}
         </Navigator>
     );
 };
@@ -210,6 +233,7 @@ export const NestedLearningScreens = () => {
                     headerShown: false,
                 }}
             />
+            {profile}
         </Navigator>
     );
 };
@@ -233,6 +257,7 @@ export const NestedAIScreens = () => {
                     headerShown: false,
                 }}
             />
+            {profile}
         </Navigator>
     );
 };
@@ -256,6 +281,7 @@ export const NestedCommunityScreens = () => {
                     headerShown: false,
                 }}
             />
+            {profile}
         </Navigator>
     );
 };

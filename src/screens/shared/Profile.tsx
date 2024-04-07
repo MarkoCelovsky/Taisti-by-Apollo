@@ -92,8 +92,8 @@ export const Profile = (): ReactElement => {
                     }}
                     style={styles.image}
                 />
-                <CustomText className="mt-2 text-lg font-semibold">{`${user.username.firstName} ${user.username.lastName}`}</CustomText>
-                <CustomText className="text-sm font-normal">{user.email}</CustomText>
+                <CustomText className="mt-2 text-lg font-semibold text-white">{`${user.username.firstName} ${user.username.lastName}`}</CustomText>
+                <CustomText className="text-sm font-normal text-white">{user.email}</CustomText>
             </View>
             <FlashList
                 data={renderData()}

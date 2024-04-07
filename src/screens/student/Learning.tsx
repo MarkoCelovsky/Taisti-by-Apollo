@@ -13,6 +13,10 @@ import { Image } from "expo-image";
 import { Stock } from "schema/types";
 import { CustomInput } from "components/UI/CustomElements";
 import { GuideModal } from "components/modals/GuideModal";
+import { Screens } from "screens/screen-names";
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { RootStackNavigatorParamList } from "schema/navigationTypes";
 
 const guides = [
     {
@@ -61,6 +65,7 @@ export const Learning = (): ReactElement => {
         setSelectedGuide(guide);
         openModalHandler();
     };
+    const { navigate } = useNavigation<NativeStackNavigationProp<RootStackNavigatorParamList>>();
 
     if (!userId || !user) {
         return <LoadingSpinner />;
@@ -69,12 +74,17 @@ export const Learning = (): ReactElement => {
     return (
         <SafeAreaView style={styles.rootContainer}>
             <View style={styles.userBar}>
-                <Image
-                    style={{ height: 60, width: 60, marginRight: 32 }}
-                    source={{ uri: user?.photoURL || "" }}
-                    accessibilityIgnoresInvertColors
-                />
-                <CustomInput placeholder="Search" className="w-2/3" />
+                <TouchableOpacity
+                    onPress={() => navigate(Screens.Profile)}
+                    accessibilityRole="button"
+                >
+                    <Image
+                        style={{ height: 60, width: 60, marginRight: 8 }}
+                        source={{ uri: user.photoURL || "" }}
+                        accessibilityIgnoresInvertColors
+                    />
+                </TouchableOpacity>
+                <CustomInput placeholder="Search" style={styles.search} />
             </View>
             <ScrollView contentContainerStyle={styles.contentContainer}>
                 <View style={styles.cardContainer}>
@@ -140,11 +150,14 @@ const Card = ({ item }: { item: any }) => (
 
 const styles = StyleSheet.create({
     rootContainer: { flexGrow: 1, backgroundColor: "#181921", color: "#fff" },
+    search: { flex: 1 },
     userBar: {
         width: "100%",
         flexDirection: "row",
         alignItems: "center",
-        justifyContent: "center",
+        justifyContent: "space-between",
+        paddingHorizontal: 16,
+        marginTop: 26,
     },
     cardContainer: {
         flex: 1,

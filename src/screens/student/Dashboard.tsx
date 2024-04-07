@@ -181,11 +181,17 @@ export const Dashboard = (): ReactElement => {
                 <View style={styles.container}>
                     <View style={styles.headingContainer}>
                         <View className="flex-row items-center">
-                            <Image
-                                style={{ height: 60, width: 60, marginRight: 8 }}
-                                source={{ uri: user.photoURL || "" }}
-                                accessibilityIgnoresInvertColors
-                            />
+                            <TouchableOpacity
+                                onPress={() => navigate(Screens.Profile)}
+                                accessibilityRole="button"
+                            >
+                                <Image
+                                    style={{ height: 60, width: 60, marginRight: 8 }}
+                                    source={{ uri: user.photoURL || "" }}
+                                    accessibilityIgnoresInvertColors
+                                />
+                            </TouchableOpacity>
+
                             <View>
                                 <Heading>{dashboardGreeting()},</Heading>
                                 <CustomText category="h5" style={{ color: "#fff" }}>

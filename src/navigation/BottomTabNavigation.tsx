@@ -10,13 +10,11 @@ import {
     NestedAuthScreens,
     NestedConversationsScreens,
     NestedDashboardScreens,
-    NestedProfileScreens,
     NestedAIScreens,
     NestedSetupScreens,
     NestedLearningScreens,
     NestedCommunityScreens,
 } from "./CustomNavigation";
-import { LinearGradient } from "expo-linear-gradient";
 
 const { Navigator, Screen } = createBottomTabNavigator();
 
