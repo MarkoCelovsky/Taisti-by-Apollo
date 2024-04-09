@@ -45,7 +45,7 @@ export const UserListItem = ({
                             isGroup
                                 ? photoURL
                                     ? { uri: photoURL }
-                                    : require("assets/mathify.png")
+                                    : require("assets/logo.png")
                                 : { uri: photoURL ? photoURL : blankUser }
                         }
                         style={styles.roundImage}

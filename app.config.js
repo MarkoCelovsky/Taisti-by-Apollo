@@ -2,11 +2,11 @@ import "dotenv/config";
 
 module.exports = {
     expo: {
-        name: "LunaLearn",
-        slug: "lunalearn",
+        name: "Taisti",
+        slug: "taisti",
         version: "1.0.0",
         orientation: "portrait",
-        icon: "./assets/mathify.png",
+        icon: "./assets/logo.png",
         userInterfaceStyle: "automatic",
         scheme: "lunalearn",
         notification: {
@@ -18,14 +18,13 @@ module.exports = {
             [
                 "expo-image-picker",
                 {
-                    photosPermission:
-                        "The app accesses your photos to let you share them with your instructors.",
+                    photosPermission: "The app accesses your photos.",
                 },
             ],
             [
                 "expo-local-authentication",
                 {
-                    faceIDPermission: "Allow LunaLearn to use Face ID.",
+                    faceIDPermission: "Allow Taisti to use Face ID.",
                 },
             ],
             ["expo-localization"],
@@ -50,12 +49,12 @@ module.exports = {
             [
                 "expo-location",
                 {
-                    locationAlwaysAndWhenInUsePermission: "Allow Mathify to use your location.",
+                    locationAlwaysAndWhenInUsePermission: "Allow Taisti to use your location.",
                 },
             ],
         ],
         splash: {
-            image: "./assets/mathify_splash.png",
+            image: "./assets/splash.png",
             resizeMode: "cover",
             backgroundColor: "#000",
         },
@@ -72,7 +71,7 @@ module.exports = {
         },
         android: {
             adaptiveIcon: {
-                foregroundImage: "./assets/mathify.png",
+                foregroundImage: "./assets/logo.png",
                 backgroundColor: "#000",
             },
             config: {
@@ -85,7 +84,7 @@ module.exports = {
             googleServicesFile: "./google-services.json",
         },
         web: {
-            favicon: "./assets/mathify.png",
+            favicon: "./assets/logo.png",
         },
         extra: {
             FIREBASE_API_KEY: process.env.FIREBASE_API_KEY,

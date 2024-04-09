@@ -57,7 +57,7 @@ export const EditPhoto = ({
                             isGroup
                                 ? image
                                     ? { uri: image }
-                                    : require("assets/mathify.png")
+                                    : require("assets/logo.png")
                                 : {
                                       uri: image ? image : blankUser,
                                   }
